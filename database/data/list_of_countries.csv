@@ -1,0 +1,262 @@
+S#,Continent_Name,Country_Name
+1,Africa,"Algeria, People's Democratic Republic of"
+2,Africa,"Angola, Republic of"
+3,Africa,"Botswana, Republic of"
+4,Africa,"Burundi, Republic of"
+5,Africa,"Cameroon, Republic of"
+6,Africa,"Cape Verde, Republic of"
+7,Africa,Central African Republic
+8,Africa,"Chad, Republic of"
+9,Africa,"Comoros, Union of the"
+10,Africa,Mayotte
+11,Africa,"Congo, Republic of the"
+12,Africa,"Congo, Democratic Republic of the"
+13,Africa,"Benin, Republic of"
+14,Africa,"Equatorial Guinea, Republic of"
+15,Africa,"Ethiopia, Federal Democratic Republic of"
+16,Africa,"Eritrea, State of"
+17,Africa,"Djibouti, Republic of"
+18,Africa,"Gabon, Gabonese Republic"
+19,Africa,"Gambia, Republic of the"
+20,Africa,"Ghana, Republic of"
+21,Africa,"Guinea, Republic of"
+22,Africa,"Cote d'Ivoire, Republic of"
+23,Africa,"Kenya, Republic of"
+24,Africa,"Lesotho, Kingdom of"
+25,Africa,"Liberia, Republic of"
+26,Africa,Libyan Arab Jamahiriya
+27,Africa,"Madagascar, Republic of"
+28,Africa,"Malawi, Republic of"
+29,Africa,"Mali, Republic of"
+30,Africa,"Mauritania, Islamic Republic of"
+31,Africa,"Mauritius, Republic of"
+32,Africa,"Morocco, Kingdom of"
+33,Africa,"Mozambique, Republic of"
+34,Africa,"Namibia, Republic of"
+35,Africa,"Niger, Republic of"
+36,Africa,"Nigeria, Federal Republic of"
+37,Africa,"Guinea-Bissau, Republic of"
+38,Africa,Reunion
+39,Africa,"Rwanda, Republic of"
+40,Africa,Saint Helena
+41,Africa,"Sao Tome and Principe, Democratic Republic of"
+42,Africa,"Senegal, Republic of"
+43,Africa,"Seychelles, Republic of"
+44,Africa,"Sierra Leone, Republic of"
+45,Africa,"Somalia, Somali Republic"
+46,Africa,"South Africa, Republic of"
+47,Africa,"Zimbabwe, Republic of"
+48,Africa,South Sudan
+49,Africa,Western Sahara
+50,Africa,"Sudan, Republic of"
+51,Africa,"Swaziland, Kingdom of"
+52,Africa,"Togo, Togolese Republic"
+53,Africa,"Tunisia, Tunisian Republic"
+54,Africa,"Uganda, Republic of"
+55,Africa,"Egypt, Arab Republic of"
+56,Africa,"Tanzania, United Republic of"
+57,Africa,Burkina Faso
+58,Africa,"Zambia, Republic of"
+59,Antarctica,Antarctica (the territory South of 60 deg S)
+60,Antarctica,Bouvet Island (Bouvetoya)
+61,Antarctica,South Georgia and the South Sandwich Islands
+62,Antarctica,French Southern Territories
+63,Antarctica,Heard Island and McDonald Islands
+64,Asia,"Afghanistan, Islamic Republic of"
+65,Asia,"Azerbaijan, Republic of"
+66,Asia,"Bahrain, Kingdom of"
+67,Asia,"Bangladesh, People's Republic of"
+68,Asia,"Armenia, Republic of"
+69,Asia,"Bhutan, Kingdom of"
+70,Asia,British Indian Ocean Territory (Chagos Archipelago)
+71,Asia,Brunei Darussalam
+72,Asia,"Myanmar, Union of"
+73,Asia,"Cambodia, Kingdom of"
+74,Asia,"Sri Lanka, Democratic Socialist Republic of"
+75,Asia,"China, People's Republic of"
+76,Asia,Taiwan
+77,Asia,Christmas Island
+78,Asia,Cocos (Keeling) Islands
+79,Asia,"Cyprus, Republic of"
+80,Asia,Georgia
+81,Asia,"Palestinian Territory, Occupied"
+82,Asia,"Hong Kong, Special Administrative Region of China"
+83,Asia,"India, Republic of"
+84,Asia,"Indonesia, Republic of"
+85,Asia,"Iran, Islamic Republic of"
+86,Asia,"Iraq, Republic of"
+87,Asia,"Israel, State of"
+88,Asia,Japan
+89,Asia,"Kazakhstan, Republic of"
+90,Asia,"Jordan, Hashemite Kingdom of"
+91,Asia,"Korea, South"
+92,Asia,"Korea, North"
+93,Asia,"Kuwait, State of"
+94,Asia,Kyrgyz Republic
+95,Asia,Lao People's Democratic Republic
+96,Asia,"Lebanon, Lebanese Republic"
+97,Asia,"Macao, Special Administrative Region of China"
+98,Asia,Malaysia
+99,Asia,"Maldives, Republic of"
+100,Asia,Mongolia
+101,Asia,"Oman, Sultanate of"
+102,Asia,"Nepal, State of"
+103,Asia,"Pakistan, Islamic Republic of"
+104,Asia,"Philippines, Republic of the"
+105,Asia,"Timor-Leste, Democratic Republic of"
+106,Asia,"Qatar, State of"
+107,Asia,Russian Federation
+108,Asia,"Saudi Arabia, Kingdom of"
+109,Asia,"Singapore, Republic of"
+110,Asia,"Vietnam, Socialist Republic of"
+111,Asia,Syrian Arab Republic
+112,Asia,"Tajikistan, Republic of"
+113,Asia,"Thailand, Kingdom of"
+114,Asia,United Arab Emirates
+115,Asia,"Turkey, Republic of"
+116,Asia,Turkmenistan
+117,Asia,"Uzbekistan, Republic of"
+118,Asia,Yemen
+119,Asia,Iraq-Saudi Arabia Neutral Zone
+120,Asia,United Nations Neutral Zone
+121,Asia,Spratly Islands
+122,Europe,"Albania, Republic of"
+123,Europe,"Andorra, Principality of"
+124,Europe,"Azerbaijan, Republic of"
+125,Europe,"Austria, Republic of"
+126,Europe,"Armenia, Republic of"
+127,Europe,"Belgium, Kingdom of"
+128,Europe,Bosnia and Herzegovina
+129,Europe,"Bulgaria, Republic of"
+130,Europe,"Belarus, Republic of"
+131,Europe,"Croatia, Republic of"
+132,Europe,"Cyprus, Republic of"
+133,Europe,Czech Republic
+134,Europe,"Denmark, Kingdom of"
+135,Europe,"Estonia, Republic of"
+136,Europe,Faroe Islands
+137,Europe,"Finland, Republic of"
+138,Europe,Åland Islands
+139,Europe,"France, French Republic"
+140,Europe,Georgia
+141,Europe,"Germany, Federal Republic of"
+142,Europe,Gibraltar
+143,Europe,"Greece, Hellenic Republic"
+144,Europe,Holy See (Vatican City State)
+145,Europe,"Hungary, Republic of"
+146,Europe,"Iceland, Republic of"
+147,Europe,Ireland
+148,Europe,"Italy, Italian Republic"
+149,Europe,"Kazakhstan, Republic of"
+150,Europe,"Latvia, Republic of"
+151,Europe,"Liechtenstein, Principality of"
+152,Europe,"Lithuania, Republic of"
+153,Europe,"Luxembourg, Grand Duchy of"
+154,Europe,"Malta, Republic of"
+155,Europe,"Monaco, Principality of"
+156,Europe,"Moldova, Republic of"
+157,Europe,"Montenegro, Republic of"
+158,Europe,"Netherlands, Kingdom of the"
+159,Europe,"Norway, Kingdom of"
+160,Europe,"Poland, Republic of"
+161,Europe,"Portugal, Portuguese Republic"
+162,Europe,Romania
+163,Europe,Russian Federation
+164,Europe,"San Marino, Republic of"
+165,Europe,"Serbia, Republic of"
+166,Europe,Slovakia (Slovak Republic)
+167,Europe,"Slovenia, Republic of"
+168,Europe,"Spain, Kingdom of"
+169,Europe,Svalbard & Jan Mayen Islands
+170,Europe,"Sweden, Kingdom of"
+171,Europe,"Switzerland, Swiss Confederation"
+172,Europe,"Turkey, Republic of"
+173,Europe,Ukraine
+174,Europe,"Macedonia, The Former Yugoslav Republic of"
+175,Europe,United Kingdom of Great Britain & Northern Ireland
+176,Europe,"Guernsey, Bailiwick of"
+177,Europe,"Jersey, Bailiwick of"
+178,Europe,Isle of Man
+179,North America,Antigua and Barbuda
+180,North America,"Bahamas, Commonwealth of the"
+181,North America,Barbados
+182,North America,Bermuda
+183,North America,Belize
+184,North America,British Virgin Islands
+185,North America,Canada
+186,North America,Cayman Islands
+187,North America,"Costa Rica, Republic of"
+188,North America,"Cuba, Republic of"
+189,North America,"Dominica, Commonwealth of"
+190,North America,Dominican Republic
+191,North America,"El Salvador, Republic of"
+192,North America,Greenland
+193,North America,Grenada
+194,North America,Guadeloupe
+195,North America,"Guatemala, Republic of"
+196,North America,"Haiti, Republic of"
+197,North America,"Honduras, Republic of"
+198,North America,Jamaica
+199,North America,Martinique
+200,North America,"Mexico, United Mexican States"
+201,North America,Montserrat
+202,North America,Netherlands Antilles
+203,North America,Curaçao
+204,North America,Aruba
+205,North America,Sint Maarten (Netherlands)
+206,North America,"Bonaire, Sint Eustatius and Saba"
+207,North America,"Nicaragua, Republic of"
+208,North America,United States Minor Outlying Islands
+209,North America,"Panama, Republic of"
+210,North America,"Puerto Rico, Commonwealth of"
+211,North America,Saint Barthelemy
+212,North America,"Saint Kitts and Nevis, Federation of"
+213,North America,Anguilla
+214,North America,Saint Lucia
+215,North America,Saint Martin
+216,North America,Saint Pierre and Miquelon
+217,North America,Saint Vincent and the Grenadines
+218,North America,"Trinidad and Tobago, Republic of"
+219,North America,Turks and Caicos Islands
+220,North America,United States of America
+221,North America,United States Virgin Islands
+222,Oceania,American Samoa
+223,Oceania,"Australia, Commonwealth of"
+224,Oceania,Solomon Islands
+225,Oceania,Cook Islands
+226,Oceania,"Fiji, Republic of the Fiji Islands"
+227,Oceania,French Polynesia
+228,Oceania,"Kiribati, Republic of"
+229,Oceania,Guam
+230,Oceania,"Nauru, Republic of"
+231,Oceania,New Caledonia
+232,Oceania,"Vanuatu, Republic of"
+233,Oceania,New Zealand
+234,Oceania,Niue
+235,Oceania,Norfolk Island
+236,Oceania,"Northern Mariana Islands, Commonwealth of the"
+237,Oceania,United States Minor Outlying Islands
+238,Oceania,"Micronesia, Federated States of"
+239,Oceania,"Marshall Islands, Republic of the"
+240,Oceania,"Palau, Republic of"
+241,Oceania,"Papua New Guinea, Independent State of"
+242,Oceania,Pitcairn Islands
+243,Oceania,Tokelau
+244,Oceania,"Tonga, Kingdom of"
+245,Oceania,Tuvalu
+246,Oceania,Wallis and Futuna
+247,Oceania,"Samoa, Independent State of"
+248,South America,"Argentina, Argentine Republic"
+249,South America,"Bolivia, Republic of"
+250,South America,"Brazil, Federative Republic of"
+251,South America,"Chile, Republic of"
+252,South America,"Colombia, Republic of"
+253,South America,"Ecuador, Republic of"
+254,South America,Falkland Islands (Malvinas)
+255,South America,French Guiana
+256,South America,"Guyana, Co-operative Republic of"
+257,South America,"Paraguay, Republic of"
+258,South America,"Peru, Republic of"
+259,South America,"Suriname, Republic of"
+260,South America,"Uruguay, Eastern Republic of"
+261,South America,"Venezuela, Bolivarian Republic of"

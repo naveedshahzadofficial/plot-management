@@ -1,0 +1,21 @@
+.color-red-700 {
+    color: #d32f2f !important;
+}
+
+div.dt-buttons {
+    float: right !important;
+}
+div.dt-buttons button{
+    background-image: none !important;
+    background-color: transparent !important;
+    border: transparent !important;
+    padding: 5px !important;
+}
+
+.fa-file-pdf{
+    color: #ff0801 !important;
+}
+
+.fa-file-excel,.fa-file-text, .fa-file-csv {
+    color: #0b9444 !important;
+}
