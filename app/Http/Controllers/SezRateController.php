@@ -122,6 +122,6 @@ class SezRateController extends Controller
         $sezRate->update(['status'=>!$sezRate->status]);
         return redirect()
             ->route('special-economic-zones.sez-rates.index',$specialEconomicZone)
-            ->with('success_message', 'SEZ Rate status changed successfully');
+            ->with('success_message', 'SEZ Rate status has been changed successfully.');
     }
 }

@@ -15,7 +15,7 @@ class MasterPlanFactory extends Factory
     {
         return [
             //'master_plan_file' => $this->faker->image('public/storage/master-plans',640,480, null, false),
-            'master_plan_file' => $this->faker->slug(),
+            'master_plan_file' => 'sample.pdf',
             'year' => $this->faker->year(),
         ];
     }

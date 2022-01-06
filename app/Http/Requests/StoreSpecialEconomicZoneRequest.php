@@ -24,8 +24,8 @@ class StoreSpecialEconomicZoneRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'district_id'=>'required',
+            'name'=>'required|string|max:100',
+            'district_id'=>'required|integer',
             'total_area'=>'required',
             'industrial_area'=>'required',
             'industrial_total_plots'=>'required',
@@ -37,7 +37,7 @@ class StoreSpecialEconomicZoneRequest extends FormRequest
             'other_area'=>'sometimes|nullable',
             'latitude'=>'required',
             'longitude'=>'required',
-            'status'=>'required',
+            'status'=>'required|integer',
         ];
     }
 }

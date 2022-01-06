@@ -1,11 +1,11 @@
 @extends('layouts.main')
-@push('title', 'Special Economic Zones')
+@push('title', 'Plots')
 @push('breadcrumb-items')
     <li class="breadcrumb-item">
         <a  class="text-muted">System Definitions</a>
     </li>
     <li class="breadcrumb-item">
-        <a class="text-muted">Special Economic Zones</a>
+        <a class="text-muted">Plots</a>
     </li>
 @endpush
 @section('content')
@@ -19,14 +19,12 @@
                 <div class="card card-custom">
                     <div class="card-header flex-wrap border-0 pb-0">
                         <div class="card-title">
-                            <h3 class="card-label">Special Economic Zones
-
-                            </h3>
+                            <h3 class="card-label">Plots</h3>
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Dropdown-->
 
-                            <a href="{{ route('special-economic-zones.create') }}" class="btn btn-primary font-weight-bolder">
+                            <a href="{{ route('plots.create') }}" class="btn btn-primary font-weight-bolder">
                             <span class="svg-icon svg-icon-md">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -37,7 +35,7 @@
                                     </g>
                                 </svg>
                                 <!--end::Svg Icon-->
-                            </span>New Special Economic Zone</a>
+                            </span>New Plot</a>
                             <!--end::Button-->
                         </div>
                     </div>
@@ -49,9 +47,11 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
-                                <th>District</th>
-                                <th>Total Area</th>
+                                <th>SEZ</th>
+                                <th>Plot No.</th>
+                                <th>Type</th>
+                                <th>Plot Size (Acres)</th>
+                                <th class="text-center">Plot Status</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -89,7 +89,7 @@
                 serverSide: true,
                 searching: true,
                 ajax: {
-                    url: '{{ route('special-economic-zones.index') }}',
+                    url: '{{ route('plots.index') }}',
                     type: "GET",
                     data: function (row) {
                         row.test = 1;
@@ -97,9 +97,11 @@
                 },
                 columns: [
                     {data: 'id', searchable: false, visible: false, printable: false},
-                    {data: 'name', name: 'name'},
-                    {data: 'district', name: 'district.district_name_e'},
-                    {data: 'total_area', name: 'total_area'},
+                    {data: 'special_economic_zone', name: 'special_economic_zone.name'},
+                    {data: 'plot_no', name: 'plot_no'},
+                    {data: 'plot_type', name: 'plot_type'},
+                    {data: 'plot_size', name: 'plot_size'},
+                    {data: 'plot_status', name: 'plot_status', class: 'text-center'},
                     {data: 'status', name: 'status', class: 'text-center'},
                     {data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-center not-exported'},
                 ],

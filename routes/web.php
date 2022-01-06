@@ -7,7 +7,10 @@ use App\Http\Controllers\ {
     RoleController,
     JobController,
     SpecialEconomicZoneController,
-    SezRateController
+    SezRateController,
+    MasterPlanController,
+    IndustrialZoneController,
+    PlotController
 };
 
 Route::get('/', function () {
@@ -25,19 +28,9 @@ Route::resource('roles', RoleController::class);
 Route::resource('jobs', JobController::class);
 Route::resource('special-economic-zones', SpecialEconomicZoneController::class);
 Route::resource('special-economic-zones.sez-rates', SezRateController::class);
-
-
-Route::resource('special_zones', App\Http\Controllers\SpecialAreaZoneController::class);
-
-Route::get('zones', [App\Http\Controllers\SpecialAreaZoneController::class, 'zones'])->name('zones');
-Route::delete('zone/delete/{id}', [App\Http\Controllers\SpecialAreaZoneController::class, 'zonesDelete'])->name('zone.delete');
-Route::get('zone/create', [App\Http\Controllers\SpecialAreaZoneController::class, 'zoneCreate'])->name('zone.create');
-Route::post('zone/store', [App\Http\Controllers\SpecialAreaZoneController::class, 'zoneStore'])->name('zone.store');
-Route::get('zone/edit/{id}', [App\Http\Controllers\SpecialAreaZoneController::class, 'zoneEdit'])->name('zone.edit');
-Route::put('zone/update/{id}', [App\Http\Controllers\SpecialAreaZoneController::class, 'zoneUpdate'])->name('zone.update');
-
-
-Route::resource('plots', App\Http\Controllers\PlotsController::class);
+Route::resource('special-economic-zones.master-plans', MasterPlanController::class);
+Route::resource('special-economic-zones.industrial-zones', IndustrialZoneController::class);
+Route::resource('plots', PlotController::class);
 
 
 Route::get('profile', [App\Http\Controllers\UsersController::class, 'profile'])->name('profile');

@@ -21,11 +21,14 @@ class SpecialEconomicZoneFactory extends Factory
     {
         return $this->afterCreating(function (SpecialEconomicZone $specialEconomicZone) {
             $sezRates = SezRate::factory(rand(10,50))->make();
-            $specialEconomicZone->sezRates()->saveMany($sezRates);
+            $sezRatesUnique = $sezRates->unique('date_of_approval');
+            $specialEconomicZone->sezRates()->saveMany($sezRatesUnique);
             $masterPlans = MasterPlan::factory( rand(10,50))->make();
-            $specialEconomicZone->masterPlans()->saveMany($masterPlans);
-            $industrialZones = IndustrialZone::factory( rand(10,50))->make();
-            $specialEconomicZone->industrialZones()->saveMany($industrialZones);
+            $masterPlansUnique = $masterPlans->unique('year');
+            $specialEconomicZone->masterPlans()->saveMany($masterPlansUnique);
+            $industrialZones = IndustrialZone::factory( 7)->make();
+            $industrialZonesUnique = $industrialZones->unique('sector_id');
+            $specialEconomicZone->industrialZones()->saveMany($industrialZonesUnique);
         });
     }
     /**

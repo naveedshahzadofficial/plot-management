@@ -114,6 +114,7 @@
 		<!-- <script src="{{ asset('assets/js/table-advanced.js') }}"></script> -->
 		<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 		<script src="{{ asset('assets/js/jquery.validate.min.js')}}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
         <script src="{{ asset('assets/plugins/custom/datetimepicker/jquery.datetimepicker.full.min.js') }}"></script>
 
             <script type="text/javascript">

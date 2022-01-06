@@ -53,6 +53,8 @@
 								'roles.index','roles.create','roles.edit',
 								'special-economic-zones.index','special-economic-zones.create','special-economic-zones.edit',
 								'special-economic-zones.sez-rates.index','special-economic-zones.sez-rates.create','special-economic-zones.sez-rates.edit',
+								'special-economic-zones.master-plans.index','special-economic-zones.master-plans.create','special-economic-zones.master-plans.edit',
+								'special-economic-zones.industrial-zones.index','special-economic-zones.industrial-zones.create','special-economic-zones.industrial-zones.edit',
 								],'menu-item-open') }}" aria-haspopup="true" data-menu-toggle="hover">
 								<a href="javascript:;" class="menu-link menu-toggle">
 									<span class="svg-icon menu-icon">
@@ -82,6 +84,8 @@
 										<li class="menu-item {{ areActiveRoutes([
     'special-economic-zones.index','special-economic-zones.create','special-economic-zones.edit',
     'special-economic-zones.sez-rates.index','special-economic-zones.sez-rates.create','special-economic-zones.sez-rates.edit',
+    'special-economic-zones.master-plans.index','special-economic-zones.master-plans.create','special-economic-zones.master-plans.edit',
+    'special-economic-zones.industrial-zones.index','special-economic-zones.industrial-zones.create','special-economic-zones.industrial-zones.edit',
 
     ]) }}" aria-haspopup="true">
 											<a href="{{ route('special-economic-zones.index') }}" class="menu-link">
@@ -92,24 +96,7 @@
 											</a>
 										</li>
 
-										<li class="menu-item {{ areActiveRoutes(['zones','zone.create','zone.store','zone.edit','zone.update'] ) }}" aria-haspopup="true">
-											<a href="{{ route('zones') }}" class="menu-link">
-												<i class="menu-bullet menu-bullet-line">
-													<span></span>
-												</i>
-												<span class="menu-text">Zones</span>
-											</a>
-										</li>
 
-
-										<li class="menu-item {{ areActiveRoutes(['plots.index','plots.create','plots.edit']) }}" aria-haspopup="true">
-											<a href="{{ route('plots.index') }}" class="menu-link">
-												<i class="menu-bullet menu-bullet-line">
-													<span></span>
-												</i>
-												<span class="menu-text">Plots</span>
-											</a>
-										</li>
 
 
 										<li class="menu-item {{ areActiveRoutes(['roles.index','roles.create','roles.edit']) }}" aria-haspopup="true">

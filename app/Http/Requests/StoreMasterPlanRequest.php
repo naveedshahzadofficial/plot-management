@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreMasterPlanRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreMasterPlanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,19 @@ class StoreMasterPlanRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'year'=>['required', Rule::unique('master_plans', 'year')->where('special_economic_zone_id', $this->special_economic_zone->id)],
+            'master_plan_file'=>'required|mimes:jpg,jpeg,png,pdf,doc,docx|max:5120',
+            'status'=>'required|integer',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'year.unique' => 'This year master plan already exist.',
+            'master_plan_file.required' => 'Master Plan file is required.',
+            'master_plan_file.mimes' => 'Master Plan must be a file of type: jpg, jpeg, png, pdf, doc, docx.',
+            'master_plan_file.max' => 'Master Plan file must not be greater than 5MB.',
         ];
     }
 }
