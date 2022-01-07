@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePlotMergeRequest;
 use App\Http\Requests\StorePlotRequest;
+use App\Http\Requests\StorePlotSplitRequest;
 use App\Http\Requests\UpdatePlotRequest;
+use App\Models\PlotLog;
 use App\Models\SpecialEconomicZone;
 use App\Models\Plot;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class PlotController extends Controller
@@ -22,7 +26,7 @@ class PlotController extends Controller
             $query=Plot::with('specialEconomicZone');
             return DataTables::of($query)
                 ->addIndexColumn()
-                ->addColumn('special_economic_zone', function (Plot $plot) {
+                ->addColumn('specialEconomicZone', function (Plot $plot) {
                     return optional($plot->specialEconomicZone)->name;
                 })
                 ->editColumn('plot_no', function (Plot $plot) {
@@ -39,9 +43,10 @@ class PlotController extends Controller
                 ->addColumn('action', function(Plot $plot){
                     $actionBtn ='<a href="'.route('plots.edit',$plot).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Update"> <i class="flaticon2-edit"></i> </a>';
                     $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('plots.destroy',$plot).'" class="btn btn-icon btn-circle btn-xs mr-2 '.($plot->status?'btn-outline-success':'btn-outline-danger').'" title="'.($plot->status?'Activate':'Deactivate').'"> <i class="'.($plot->status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
+                    $actionBtn .='<a href="'.route('plots.split.create',$plot).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Plot Split"> <i class="fas fa-splotch"></i> </a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['special_economic_zone','plot_no','status','action'])
+                ->rawColumns(['specialEconomicZone','plot_no','status','action'])
                 ->make(true);
         }
 
@@ -123,5 +128,86 @@ class PlotController extends Controller
         return redirect()
             ->route('plots.index')
             ->with('success_message', 'Plot status has been changed successfully.');
+    }
+
+    public function split(Plot $plot){
+        return view('plots.split', compact('plot'));
+    }
+
+    public function splitStore(StorePlotSplitRequest $request, Plot $plot){
+
+        $total_area = 0;
+        foreach ($request->new_plots as $new_plot){
+            $newPlot = $plot->replicate();
+            $newPlot->plot_no = $new_plot['plot_no'];
+            $newPlot->plot_size = $new_plot['plot_size'];
+            $newPlot->plot_action = null;
+            $newPlot->latitude = $new_plot['latitude'];
+            $newPlot->longitude = $new_plot['longitude'];
+            $newPlot->save();
+
+            $total_area +=  $newPlot->plot_size;
+
+            PlotLog::create([
+                'plot_id' =>   $plot->id,
+                'new_plot_id' =>  $newPlot->id,
+                'plot_action' =>   'Split',
+            ]);
+        }
+
+        $plot->update([
+            'plot_size'=> $plot->plot_size - $total_area,
+            'plot_action'=> 'Split'
+        ]);
+
+
+
+        return redirect()
+            ->route('plots.index')
+            ->with('success_message', 'Plot has been split successfully.');
+
+    }
+
+    public function merge(){
+        $data = array();
+        $data['specialEconomicZones'] =SpecialEconomicZone::where('status', 1)->get();
+        return view('plots.merge', compact('data'));
+    }
+
+    public function mergeStore(StorePlotMergeRequest $request)
+    {
+        $data = $request->validated();
+        $data['plot_size'] = $this->mergePlotsArea($request);
+        $newPlot = Plot::create($data);
+
+        foreach ($request->merge_plots as $id) {
+            $plot = Plot::find($id);
+            if($plot) {
+                PlotLog::create([
+                    'plot_id' => $plot->id,
+                    'new_plot_id' => $newPlot->id,
+                    'plot_action' => 'Merge',
+                ]);
+                $plot->update(['deleted_at'=> now(), 'plot_action'=> 'Merge']);
+            }
+        }
+
+        return redirect()
+            ->route('plots.index')
+            ->with('success_message', 'Plot has been merge successfully.');
+
+    }
+
+    public function zonePlots(Request $request){
+        $plots = Plot::where('special_economic_zone_id', $request->special_economic_zone_id)->where('plot_type',$request->plot_type)->get();
+        return response()->json($plots);
+    }
+
+    public function mergePlotsArea(Request $request){
+        $total_area = 0;
+        if(isset($request->merge_plots) && !empty($request->merge_plots)) {
+            $total_area= Plot::whereIn('id', $request->merge_plots)->sum('plot_size');
+        }
+        return $total_area;
     }
 }

@@ -23,6 +23,7 @@ class CreatePlotsTable extends Migration
             $table->string('longitude')->nullable();
             $table->enum('plot_status', ['Sold', 'Unsold'])->default('Unsold');
             $table->boolean('status')->default(1);
+            $table->string('plot_action')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

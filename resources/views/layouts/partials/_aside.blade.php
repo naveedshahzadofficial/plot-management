@@ -55,7 +55,7 @@
 								'special-economic-zones.sez-rates.index','special-economic-zones.sez-rates.create','special-economic-zones.sez-rates.edit',
 								'special-economic-zones.master-plans.index','special-economic-zones.master-plans.create','special-economic-zones.master-plans.edit',
 								'special-economic-zones.industrial-zones.index','special-economic-zones.industrial-zones.create','special-economic-zones.industrial-zones.edit',
-								'plots.index','plots.create','plots.edit',
+								'plots.index','plots.create','plots.edit', 'plots.split.create', 'plots.merge.create',
 								],'menu-item-open') }}" aria-haspopup="true" data-menu-toggle="hover">
 								<a href="javascript:;" class="menu-link menu-toggle">
 									<span class="svg-icon menu-icon">
@@ -98,7 +98,7 @@
 										</li>
 
                                         <li class="menu-item {{ areActiveRoutes([
-    'plots.index','plots.create','plots.edit',
+    'plots.index','plots.create','plots.edit','plots.split.create', 'plots.merge.create',
     ]) }}" aria-haspopup="true">
                                             <a href="{{ route('plots.index') }}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-line">
