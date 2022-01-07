@@ -37,7 +37,7 @@ class SpecialEconomicZoneController extends Controller
                     $query->where('status', $status_id);
                 })
                 ->addColumn('action', function(SpecialEconomicZone $specialEconomicZone){
-                    $actionBtn = '<a target="_blank" title="View Detail" href="'.route('special-economic-zones.show',$specialEconomicZone).'" class="btn btn-icon btn-outline-info btn-circle btn-xs mr-2"><i class="flaticon-eye"></i></a>';
+                    $actionBtn = '<a target="_blank" title="View Detail" href="'.route('special-economic-zones.show',$specialEconomicZone).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2"><i class="flaticon-eye"></i></a>';
                     $actionBtn .='<a href="'.route('special-economic-zones.edit',$specialEconomicZone).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Update"> <i class="flaticon2-edit"></i> </a>';
                     $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('special-economic-zones.destroy',$specialEconomicZone).'" class="btn btn-icon btn-circle btn-xs mr-2 '.($specialEconomicZone->status?'btn-outline-success':'btn-outline-danger').'" title="'.($specialEconomicZone->status?'Activate':'Deactivate').'"> <i class="'.($specialEconomicZone->status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
                     $actionBtn .='<a href="'.route('special-economic-zones.sez-rates.index',$specialEconomicZone).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="SEZ Rates"> <i class="fa fa-money-bill"></i> </a>';
