@@ -155,8 +155,6 @@
                 },
                 isFirstItemUndeletable: true
             });
-
-
         });
     </script>
 @endpush
