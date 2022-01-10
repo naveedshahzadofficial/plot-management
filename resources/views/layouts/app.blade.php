@@ -44,7 +44,7 @@
             @yield('content')
         </div>
 
-        @component('auth.footer-auth') @endcomponent
+        @include('auth.footer-auth')
 
         @stack('pre-scripts')
         @section('scripts')

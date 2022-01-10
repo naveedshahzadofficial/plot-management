@@ -43,47 +43,10 @@
 
                             <div class="cstm m_repeater_section">
                             <div  data-repeater-list="new_plots">
-                                <div data-repeater-item>
-                                <div class="text-right">
-                                    <a href="javascript:;" data-repeater-delete="" class="btn btn-icon btn-danger btn-sm ">
-                                        <i class="la la-remove"></i>
-                                    </a>
-                                </div>
-                            <div class="row form-group">
-                                <div class="col-lg-6">
-                                    <label>New Plot No. <span class="color-red-700">*</span></label>
-                                    <input maxlength="10" type="text" name="plot_no" class="form-control money_format" placeholder="Plot No." value="{{ old('plot_no') }}" required />
-                                    @error('plot_no')
-                                    <div class="error">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                @for($index =0; $index<count(old('new_plots',1)); $index++)
+                                @component('plots.plot-split-item', ['index'=> $index]) @endcomponent
+                                @endfor
 
-                                <div class="col-lg-6">
-                                    <label>New Plot Size (Acres) <span class="color-red-700">*</span></label>
-                                    <input maxlength="20" type="text" name="plot_size" class="form-control money_format" placeholder="Plot Size" value="{{ old('plot_size') }}" required />
-                                    @error('plot_size')
-                                    <div class="error">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-lg-6">
-                                    <label>Latitude <span class="color-red-700"></span></label>
-                                    <input type="number" name="latitude" class="form-control" placeholder="latitude" value="{{ old('latitude', $plot->latitude) }}"  />
-                                    @error('latitude')
-                                    <div class="error">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>Longitude <span class="color-red-700"></span></label>
-                                    <input type="number" name="longitude" class="form-control" placeholder="Longitude" value="{{ old('longitude', $plot->longitude) }}" />
-                                    @error('longitude')
-                                    <div class="error">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                            </div>
-                                </div>
                             </div>
                                 <div class="text-right form-group">
                                 <div data-repeater-create="" class="btn btn btn-sm btn-success m-btn m-btn--icon m-btn--pill m-btn--wide">
