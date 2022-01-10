@@ -23,7 +23,7 @@
             <div class="login-form px-32">
                 <!--begin::Form-->
 
-                <form class="form" id="kt_login_singin_form1"  method="POST" action="{{ route('login') }}">
+                <form class="form" id="kt_login_singin_form"  method="POST" action="{{ route('login') }}">
                 @csrf
                 <!--begin::Title-->
                     <!--begin::Title-->

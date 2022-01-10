@@ -49,3 +49,19 @@
     background-color:#001564 !important;
     border-color: #001564 !important;
 }
+
+.auth-left-footer{
+    text-align: left;
+    margin-left: 30px;
+    font-size: 10px;
+    color: #fff;
+    font-family:  'poppinsregular';
+}
+.auth-right-footer{
+    font-size: 10px;
+    color: #001564;
+    font-family:  'poppinsregular';
+}
+.auth-right-footer a{
+    color: #001564 !important;
+}
