@@ -19,7 +19,7 @@
     @section('styles')
     <!-- Styles -->
 
-    <link href="{{ asset('assets/css/pages/login/login-3.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/pages/login/login-4.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 		<!--end::Page Custom Styles-->
 		<!--begin::Global Theme Styles(used by all pages)-->
 		<link href="{{ asset('assets/plugins/global/plugins.bundle.css?v=7.0.5') }} " rel="stylesheet" type="text/css" />
@@ -31,19 +31,18 @@
 		<link href="{{ asset('assets/css/themes/layout/header/menu/light.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/css/themes/layout/brand/dark.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/css/themes/layout/aside/dark.css?v=7.0.5') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/css/auth.css') }}" rel="stylesheet" type="text/css" />
      @show
 
     @stack('post-styles')
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
 
 </head>
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
-    <div id="app wrapper" >
+<body id="kt_body" class="auth-bg header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
 
-
-        <main class="d-flex flex-column flex-root">
+        <div class="d-flex flex-column flex-root">
             @yield('content')
-        </main>
+        </div>
 
         @stack('pre-scripts')
         @section('scripts')
@@ -65,6 +64,5 @@
         @show
 
         @stack('post-scripts')
-    </div>
 </body>
 </html>
