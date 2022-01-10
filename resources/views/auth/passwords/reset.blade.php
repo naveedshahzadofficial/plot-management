@@ -1,96 +1,94 @@
 @extends('layouts.app')
-
+@push('title', 'Reset Password')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
 
-    
 
-    <div class="login login-3 wizard d-flex flex-column flex-lg-row flex-column-fluid">
-				<!--begin::Aside-->
-				
-				<!--begin::Aside-->
-				<!--begin::Content-->
-				<div class="login-content flex-column-fluid d-flex flex-column p-10">
-					<!--begin::Top-->
-					
-					<!--end::Top-->
-					<!--begin::Wrapper-->
-					<div class="d-flex flex-row-fluid flex-center">
-						<!--begin::Forgot-->
-						<div class="login-form">
-							<!--begin::Form-->
-                            @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                            @endif
-							<form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+    <!--begin::Login-->
+    <div class="login login-4 wizard row">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
-                            <!--begin::Title-->
-								<div class="pb-5 pb-lg-15">
-									<h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">{{ __('Reset Password') }}</h3>
-								</div>
-								<!--end::Title-->
-								<!--begin::Form group-->
-								<div class="form-group">
-                                  
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
 
-                                    <input id="email" type="email" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter Email" >
+            <!--begin::Wrapper-->
+            <div class="login-content  col-md-12 my-10">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                <!--begin::Logo-->
+                <p class="text-center">
+                    <a href="#" class="login-logo pb-xl-20 pb-15">
+                        <img src="{{ asset('assets/media/logos/logo-with-text.png') }}" alt="Special Economic Zone" />
+                    </a>
+                </p>
+                <!--end::Logo-->
+
+                <!--begin::Signin-->
+                <div class="login-form px-32">
+                    <!--begin::Form-->
+
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <form method="POST" action="{{ route('password.update') }}">
+                    @csrf
+                    <!--begin::Title-->
+                        <!--begin::Title-->
+                        <!--begin::Form group-->
+                        <div class="form-group">
+                            <label  for="email" class="auth-form-label">{{ __('Email Address') }}<span class="color-red-700">*</span></label>
+
+                            <input id="email" type="email" class="rounded-lg border-0 form-control @error('email') is-invalid @enderror" autocomplete="off" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                            @enderror
+                        </div>
+                        <!--end::Form group-->
+                        <!--begin::Form group-->
+                        <div class="form-group">
+                            <label  for="password" class="auth-form-label">{{ __('Password') }}<span class="color-red-700">*</span></label>
+                            <input id="password" type="password" class="form-control rounded-lg border-0 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                                
-                                </div>
+                            @enderror
+                        </div>
+                        <!--end::Form group-->
 
+                        <!--begin::Form group-->
+                        <div class="form-group">
+                            <label  for="password" class="auth-form-label">{{ __('Confirm Password') }}<span class="color-red-700">*</span></label>
+                            <input id="password_confirmation" type="password" class="form-control rounded-lg border-0 @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation" placeholder="Confirm Password">
 
-                                <div class="form-group">
-                                  
-                                <input id="password" type="password" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6  @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter password">
-
-                              @error('password')
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                  </span>
-                              @enderror
-                              
-                              </div>
-
-
-                              <div class="form-group">
-                                  
-                             
-
-                                  <input id="password_confirmation" type="password_confirmation" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6  @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation" placeholder="{{ __('Confirm Password') }}">
-  
-                                @error('password_confirmation')
-                                    <span class="invalid-feedback" role="alert">
+                            @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                                
-                                </div>
-                                
-								<!--end::Form group-->
-								<!--begin::Form group-->
-								<div class="form-group d-flex flex-wrap">
-									<button type="submit" id="kt_login_forgot_form_submit_button" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">    {{ __('Reset Password') }}</button>
-								</div>
-								<!--end::Form group-->
-							</form>
-							<!--end::Form-->
-						</div>
-						<!--end::Forgot-->
-					</div>
-					<!--end::Wrapper-->
-				</div>
-				<!--end::Content-->
-			</div>
+                            @enderror
+                        </div>
+                        <!--end::Form group-->
+
+                        <!--begin::Action-->
+                        <div class="pb-lg-0 pb-5">
+                            <button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder font-size-h6 w-100 auth-login-btn"> {{ __('Reset Password') }}</button>
+                        </div>
+                        <!--end::Action-->
+                    </form>
+                    <!--end::Form-->
+                </div>
+                <!--end::Signin-->
+
+            </div>
+            <!--end::Wrapper-->
+
+        </div>
+
     </div>
-</div>
+    <!--end::Login-->
+
+
 @endsection

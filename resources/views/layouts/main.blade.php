@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@stack('title','Dashboard') - @stack('app-name',config('app.name', 'Plot Management System')) }}</title>
+    <title>@stack('title','Dashboard') - @stack('app-name',config('app.name', 'Plot Management System'))</title>
 
     <!-- Scripts -->
     <!-- Fonts -->

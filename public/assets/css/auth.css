@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'poppinsbold';
+    src: url('../fonts/poppins-bold-webfont.woff2') format('woff2'),
+    url('../fonts/poppins-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'poppinsregular';
+    src: url('../fonts/poppins-regular-webfont.woff2') format('woff2'),
+    url('../fonts/poppins-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .auth-bg {
     background-image: url(../media/bg/bg-image.jpg);
     -webkit-background-size: cover;
@@ -11,4 +28,24 @@
 
 .login.login-3 .login-content {
     background: transparent;
+}
+
+.auth-form-label {
+    font-size: 14pt;
+    color: #001564 !important;
+    font-family: 'poppinsregular';
+}
+
+.auth-form-a {
+    font-size: 10pt;
+    color: #001564 !important;
+    font-family: 'poppinsregular';
+}
+
+.auth-login-btn{
+    font-family: 'poppinsbold';
+    color: #fff !important;
+    font-weight: bold;
+    background-color:#001564 !important;
+    border-color: #001564 !important;
 }
