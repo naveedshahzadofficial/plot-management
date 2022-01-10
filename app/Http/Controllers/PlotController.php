@@ -42,7 +42,7 @@ class PlotController extends Controller
                 })
                 ->addColumn('action', function(Plot $plot){
                     $actionBtn ='<a href="'.route('plots.edit',$plot).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Update"> <i class="flaticon2-edit"></i> </a>';
-                    $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('plots.destroy',$plot).'" class="btn btn-icon btn-circle btn-xs mr-2 '.($plot->status?'btn-outline-success':'btn-outline-danger').'" title="'.($plot->status?'Activate':'Deactivate').'"> <i class="'.($plot->status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
+                    $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('plots.destroy',$plot).'" class="btn btn-icon btn-circle btn-xs mr-2 '.($plot->status?'btn-outline-success':'btn-outline-danger').'" title="'.($plot->status?'Deactivate':'Activate').'"> <i class="'.($plot->status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
                     $actionBtn .='<a href="'.route('plots.split.create',$plot).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Plot Split"> <i class="fas fa-columns"></i> </a>';
                     return $actionBtn;
                 })
