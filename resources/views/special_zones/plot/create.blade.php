@@ -24,13 +24,13 @@
 											<li class="breadcrumb-item">
 												<a class="text-muted">Add</a>
 											</li>
-											
+
 										</ul>
 										<!--end::Breadcrumb-->
 									</div>
 									<!--end::Page Heading-->
 								</div>
-							
+
 							</div>
 						</div>
     <!--end::Subheader-->
@@ -41,12 +41,12 @@
             <div class="">
                 <div class="">
                     <!--begin::Card-->
-                    <div class="card card-custom gutter-b example example-compact">
+                    <div class="card card-custom gutter-b">
                         <div class="card-header">
                             <h3 class="card-title">Plot Add</h3>
 
                         </div>
-                     
+
                         <!--begin::Form-->
                         {!! Form::open(array('id'=>'plot_add','route' => 'plots.store','method'=>'POST')) !!}
                         <div class="card-body">
@@ -60,7 +60,7 @@
                               @enderror
                                 </div>
 
-                             
+
 
                                 <div class="col-lg-6">
                                     <label>Area</label>
@@ -78,7 +78,7 @@
                                         @error('area')
                                 <div class="error">{{ $message }}</div>
                               @enderror
-                                   
+
 
                                 </div>
 
@@ -123,7 +123,7 @@
                               @enderror
                                     </div>
 
-                                </div> 
+                                </div>
 
                                 <div class="col-lg-6">
                                     <label>Status</label>

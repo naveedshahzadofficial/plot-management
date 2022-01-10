@@ -41,12 +41,12 @@
             <div class="">
                 <div class="">
                     <!--begin::Card-->
-                    <div class="card card-custom gutter-b example example-compact">
+                    <div class="card card-custom gutter-b">
                         <div class="card-header">
                             <h3 class="card-title">Zone Update</h3>
 
                         </div>
-                      
+
                         <!--begin::Form-->
                         {!! Form::model($zone, ['id'=>'special_zone_edit','method' => 'put','route' => ['zone.update', $zone->id]]) !!}
                         <div class="card-body">
@@ -77,7 +77,7 @@
                             @enderror
                                         </div>
 
-                                   
+
 
                                 </div>
 
@@ -104,17 +104,17 @@
                             </div>
 
 
-                    
+
 
                             <div class="form-group row">
 
 
                                 <div class="col-lg-6">
-                                    
+
                                     <label>Area Zones</label>
                                     <div class="col-form-label">
                                         <select class="form-control" name="area_zone_id"  required>
-                                            
+
                                             @foreach($area_zones as $area_zone)
                                             <option value="{{ $area_zone->id }}" @if($area_zone->id== $zone->area_zone_id) ) selected @endif> {{ $area_zone->name }} </option>
                                             @endforeach
@@ -124,7 +124,7 @@
                               @enderror
                                     </div>
 
-                                </div> 
+                                </div>
 
                                 <div class="col-lg-6">
                                     <label>Status</label>

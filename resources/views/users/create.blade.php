@@ -21,13 +21,13 @@
 											<li class="breadcrumb-item">
 												<a class="text-muted">Add</a>
 											</li>
-											
+
 										</ul>
 										<!--end::Breadcrumb-->
 									</div>
 									<!--end::Page Heading-->
 								</div>
-							
+
 							</div>
 						</div>
     <!--end::Subheader-->
@@ -38,12 +38,12 @@
             <div class="">
                 <div class="">
                     <!--begin::Card-->
-                    <div class="card card-custom gutter-b example example-compact">
+                    <div class="card card-custom gutter-b">
                         <div class="card-header">
                             <h3 class="card-title">User Add</h3>
 
                         </div>
-                     
+
                         <!--begin::Form-->
                         {!! Form::open(array('id'=>'user_add','route' => 'users.store','method'=>'POST')) !!}
                         <div class="card-body">
@@ -185,13 +185,13 @@
                 name: "required",
                 email: "required",
                 cnic_no: "required",
-               
+
                 mobile_no: {
                     required: true,
                     number: true,
                     minlength: 11,
                     maxlength: 11
-		
+
 					},
                     password: "required",
                 password_confirmation : {

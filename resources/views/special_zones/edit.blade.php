@@ -18,7 +18,7 @@
                         <li class="breadcrumb-item">
                             <a  class="text-muted">System Definitions</a>
                         </li>
-                        
+
                         <li class="breadcrumb-item">
                             <a href="{{ route('special_zones.index') }}" class="text-muted">Special Area Zones</a>
                         </li>
@@ -42,12 +42,12 @@
             <div class="">
                 <div class="">
                     <!--begin::Card-->
-                    <div class="card card-custom gutter-b example example-compact">
+                    <div class="card card-custom gutter-b">
                         <div class="card-header">
                             <h3 class="card-title">Area Zone Update</h3>
 
                         </div>
-                      
+
                         <!--begin::Form-->
                         {!! Form::model($zone, ['id'=>'special_zone_edit','method' => 'put','route' => ['special_zones.update', $zone->id]]) !!}
                         <div class="card-body">
@@ -61,10 +61,10 @@
                             @enderror
                                 </div>
 
-               
+
                                 <div class="col-lg-6">
                                     <label>Area</label>
-                                   
+
                                         <div class="radio-inline">
                                             <label class="radio radio-primary">
                                                 <input type="radio" name="area" @if($zone->area== 'Acre' ) checked @endif value="Acre">
@@ -79,7 +79,7 @@
                             @enderror
                                         </div>
 
-                                  
+
 
                                 </div>
 
@@ -106,7 +106,7 @@
                             </div>
 
 
-                    
+
 
                             <div class="form-group row">
 
@@ -125,7 +125,7 @@
                               @enderror
                                     </div>
 
-                                </div> 
+                                </div>
 
                                 <div class="col-lg-6">
                                     <label>Status</label>

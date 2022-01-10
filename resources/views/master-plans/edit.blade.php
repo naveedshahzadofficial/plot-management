@@ -1,4 +1,4 @@
-<div class="card card-custom gutter-b example example-compact">
+<div class="card card-custom gutter-b">
     <div class="card-header" style="background: transparent !important;">
         <h3 class="card-title">Update Master Plan</h3>
 

@@ -24,13 +24,13 @@
 											<li class="breadcrumb-item">
 												<a class="text-muted">Update</a>
 											</li>
-											
+
 										</ul>
 										<!--end::Breadcrumb-->
 									</div>
 									<!--end::Page Heading-->
 								</div>
-							
+
 							</div>
 						</div>
                         <!--end::Subheader-->
@@ -41,16 +41,16 @@
                                 <div class="">
                                     <div class="">
                                         <!--begin::Card-->
-                                        <div class="card card-custom gutter-b example example-compact">
+                                        <div class="card card-custom gutter-b">
                                             <div class="card-header">
                                                 <h3 class="card-title">Role Update</h3>
-                                               
+
                                             </div>
-                                            
+
                                             <!--begin::Form-->
 {!! Form::model($role, ['id' => 'role_add','method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
                                                 <div class="card-body">
-                                                   
+
                                                     <div class="form-group">
                                                         <label>Name</label>
                                                         <input type="text" value="{{ $role->name }}"  name="name" class="form-control" placeholder="Name"  />
@@ -58,8 +58,8 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                                                     </div>
-                                                
-                                                  
+
+
                                                 </div>
                                                 <div class="card-footer">
                                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -68,9 +68,9 @@
                                             {!! Form::close() !!}
                                             <!--end::Form-->
                                         </div>
-                                      
+
                                     </div>
-                                  
+
                                 </div>
                             </div>
                             <!--end::Container-->
@@ -78,7 +78,7 @@
                         <!--end::Entry-->
                     </div>
 
-@endsection 
+@endsection
 
 
 @push('post-scripts')

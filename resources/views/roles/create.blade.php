@@ -41,12 +41,12 @@
             <div class="">
                 <div class="">
                     <!--begin::Card-->
-                    <div class="card card-custom gutter-b example example-compact">
+                    <div class="card card-custom gutter-b">
                         <div class="card-header">
                             <h3 class="card-title">Role Add</h3>
 
                         </div>
-                       
+
                         <!--begin::Form-->
                         {!! Form::open(array('route' => 'roles.store','method'=>'POST', 'id' => 'role_add')) !!}
                         <div class="card-body">
