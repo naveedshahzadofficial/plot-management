@@ -47,7 +47,7 @@
 									</a>
 								</li>
 
-                             @hasanyrole('Super Admin|Admin')
+                             @hasanyrole('Super Admin|Admin|SEZ|SEC')
 
 							 <li class="menu-item menu-item-submenu {{ areActiveRoutes([
 								'roles.index','roles.create','roles.edit',
@@ -109,8 +109,7 @@
                                         </li>
 
 
-
-
+                                        @hasanyrole('Super Admin|Admin')
 										<li class="menu-item {{ areActiveRoutes(['roles.index','roles.create','roles.edit']) }}" aria-haspopup="true">
 											<a href="{{ route('roles.index') }}" class="menu-link">
 												<i class="menu-bullet menu-bullet-line">
@@ -119,6 +118,7 @@
 												<span class="menu-text">Roles</span>
 											</a>
 										</li>
+                                        @endhasanyrole
 
 									</ul>
 								</div>
@@ -126,7 +126,7 @@
 
 
 
-
+                                @hasanyrole('Super Admin|Admin')
 								<li class="menu-item {{ areActiveRoutes(['users.index','users.create','users.edit']) }}" aria-haspopup="true">
 									<a href="{{ route('users.index') }}" class="menu-link">
 										<span class="svg-icon menu-icon">
@@ -160,6 +160,8 @@
 										<span class="menu-text">Fail Jobs</span>
 									</a>
 								</li>
+
+                                @endhasanyrole
 								@endhasanyrole
 
 							</ul>

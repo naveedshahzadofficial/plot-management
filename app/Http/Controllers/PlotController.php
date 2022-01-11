@@ -23,7 +23,10 @@ class PlotController extends Controller
     public function index()
     {
         if(request()->ajax()) {
-            $query=Plot::with('specialEconomicZone');
+            $query=Plot::with('specialEconomicZone')->when(!auth()->user()->hasAnyRole('Super Admin','Admin'), function ($q){
+                return $q->where('special_economic_zone_id', auth()->user()->special_economic_zone_id);
+            });
+
             return DataTables::of($query)
                 ->addIndexColumn()
                 ->addColumn('specialEconomicZone', function (Plot $plot) {

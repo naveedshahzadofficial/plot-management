@@ -51,35 +51,38 @@
                             <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label>Name</label>
-                                    <input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="Name" />
+                                    <input type="text" name="name" value="{{ old('name',$user->name) }}" class="form-control" placeholder="Name" />
                                     @error('name')
                                 <div class="error">{{ $message }}</div>
                             @enderror
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <label>Email</label>
-                                    <input type="email" value="{{ $user->email }}" name="email" class="form-control" placeholder="Email" />
-                                    @error('email')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
+                                    <label>Username</label>
+                                    <input type="text" value="{{ old('username',$user->username) }}" name="username" class="form-control" placeholder="Username" />
+                                    @error('username')
+                                    <div class="error">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
+
 
                             </div>
 
 
                             <div class="form-group row">
+
                                 <div class="col-lg-6">
-                                    <label>Cnic No.</label>
-                                    <input type="text" value="{{ $user->cnic_no }}" name="cnic_no" class="form-control" placeholder="Cnic No" />
-                                    @error('cnic_no')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
+                                    <label>Email</label>
+                                    <input type="email" value="{{ old('email',$user->email) }}" name="email" class="form-control" placeholder="Email" />
+                                    @error('email')
+                                    <div class="error">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-lg-6">
                                     <label>Mobile Number</label>
-                                    <input type="text" value="{{ $user->mobile_no }}" name="mobile_no" class="form-control" placeholder="Mobile Number" />
+                                    <input type="text" value="{{ old('mobile_no',$user->mobile_no) }}" name="mobile_no" class="form-control" placeholder="Mobile Number" />
                                     @error('mobile_no')
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -110,14 +113,13 @@
 
                             <div class="form-group row">
 
-
                                 <div class="col-lg-6">
                                     <label>Role</label>
                                     <div class="col-form-label">
-                                        <select class="custom-select custom-select-lg mb-3" name="roles" required>
+                                        <select class="custom-select custom-select-lg mb-3 select2" name="role_id" id="role_id" required>
                                             <option selected>Select Role</option>
                                             @foreach($roles as $role)
-                                            <option value="{{ $role->id }}" @if(in_array($role->id, $userRoles) ) selected @endif> {{ $role->name }} </option>
+                                            <option {{ old('role_id', $user->role_id)==$role->id?'selected':'' }} value="{{ $role->id }}" > {{ $role->name }} </option>
                                             @endforeach
                                         </select>
                                         @error('roles')
@@ -127,21 +129,41 @@
 
                                 </div>
 
+                                <div class="col-lg-6" id="sez_div" {!! in_array($user->role_id,[1,2])?'style="display: none;"':'' !!}>
+                                    <label>Special Economic Zone<span class="color-red-700">*</span></label>
+                                    <div class="col-form-label">
+                                        <select class="custom-select custom-select-lg mb-3 select2" name="special_economic_zone_id" id="special_economic_zone_id" required style="width: 100% !important;">
+                                            <option value="">Select Zone</option>
+                                            @foreach($specialEconomicZones as $specialEconomicZone)
+                                                <option {{ old('special_economic_zone_id',$user->special_economic_zone_id)==$specialEconomicZone->id?'selected':'' }} value="{{ $specialEconomicZone->id }}"> {{ $specialEconomicZone->name }} </option>
+                                            @endforeach
+                                        </select>
+                                        @error('special_economic_zone_id')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+
                                 <div class="col-lg-6">
                                     <label>Status</label>
                                     <div class="col-form-label">
                                         <div class="radio-inline">
                                             <label class="radio radio-primary">
-                                                <input type="radio" name="user_status" @if($user->user_status== 'Active' ) checked @endif value="Active">
+                                                <input type="radio" name="user_status" @if($user->user_status== '1' ) checked @endif value="1">
                                                 <span></span>Active</label>
 
 
                                             <label class="radio radio-primary">
-                                                <input type="radio" name="user_status" @if($user->user_status== 'Inactive' ) checked @endif value="Inactive">
+                                                <input type="radio" name="user_status" @if($user->user_status== '0' ) checked @endif value="0">
                                                 <span></span>Inactive</label>
-                                                @error('user_status')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
+                                            @error('user_status')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                     </div>
@@ -185,7 +207,7 @@
             rules: {
                 name: "required",
                 email: "required",
-                cnic_no: "required",
+                username: "required",
 
                 mobile_no: {
                     required: true,
@@ -195,7 +217,8 @@
 
                 },
 
-                roles: "required",
+                role_id: "required",
+                special_economic_zone_id: "required",
                 user_status: "required"
             },
             messages: {
@@ -205,14 +228,17 @@
                 email: {
                     required: "Email is required."
                 },
-                cnic_no: {
-                    required: "Cnic No is required."
+                username: {
+                    required: "Username is required."
                 },
                 mobile_no: {
                     required: "Mobile No is required."
                 },
-                roles: {
+                role_id: {
                     required: "Role is required."
+                },
+                special_economic_zone_id: {
+                    required: "Special Economic Zone is required."
                 },
                 user_status: {
                     required: "Status is required."
@@ -234,6 +260,16 @@
                     error.insertAfter(element);
                 }
             }
+        });
+
+        $('#role_id').change(function (){
+            let role_id = $(this).val();
+            if(role_id === '1' || role_id=== '2') {
+                $('#special_economic_zone_id').val('');
+                $('#special_economic_zone_id').trigger('change.select2');
+                $('#sez_div').hide();
+            }else
+                $('#sez_div').show();
         });
 
 

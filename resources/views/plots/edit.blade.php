@@ -30,6 +30,7 @@
                         <div class="card-body">
 
                             <div class="row form-group">
+                                @hasanyrole('Super Admin|Admin')
                                 <div class="col-lg-6">
                                     <label>Special Economic Zone <span class="color-red-700">*</span></label>
                                     <select class="form-control select2" name="special_economic_zone_id">
@@ -42,6 +43,10 @@
                                     <div class="error">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                @else
+                                    <input type="hidden" name="special_economic_zone_id" value="{{ $plot->special_economic_zone_id }}">
+                                @endhasanyrole
+
                                 <div class="col-lg-6">
                                     <label>Plot No. <span class="color-red-700">*</span></label>
                                     <input maxlength="10" type="text" name="plot_no" class="form-control money_format" placeholder="Total Area" value="{{ old('plot_no', $plot->plot_no) }}" />

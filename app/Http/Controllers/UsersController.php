@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\SpecialEconomicZone;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -10,12 +13,12 @@ use DB;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-use DataTables;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\SendChangePasswordEmailJob;
+use Yajra\DataTables\Facades\DataTables;
 
 class UsersController extends Controller
 {
@@ -26,15 +29,10 @@ class UsersController extends Controller
      */
 public function index(Request $request)
     {
-
-
         if ($request->ajax()) {
-            
-            $query = User::whereHas('roles',function($query){
-                $query->where('name', '!=' ,'Admin');
-               });
-         
-            return Datatables::of($query)
+            $query = User::query();
+
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('name', function (User $user) {
                 return $user->name;
@@ -46,51 +44,19 @@ public function index(Request $request)
                 return $user->roles()->pluck('name')->implode('');
             })
             ->addColumn('status', function (User $user) {
-                if($user->user_status=='Active'){
-                    $title='Active';
-                    $class='label-light-success';
-                }else{
-                    $title='Inactive';
-                    $class=' label-light-danger';
-                }
-                  $form="<span class='label label-lg font-weight-bold ".$class." label-inline'>$title</span>";
-                
-                  return $form;
-                   
+                return '<span class="label label-lg font-weight-bold label-inline '.($user->user_status?'label-light-success':'label-light-danger').'">'.($user->user_status?'Active':'Inactive').'</span>';
             })
             ->addColumn('action', function(User $user){
-
-                
-                if($user->user_status=='Active'){
-                    $title='Activate';
-                    $class='icon-xl fas fa-toggle-on';
-                    $color='btn-outline-success';
-                   }else{
-                    $title='Deactivate';
-                    $class=' icon-xl fas fa-toggle-off';
-                    $color="btn-outline-danger";
-                   }
-             
-                   
-                  $btn ='<a href="users/'.$user->id.'/edit"" class="btn btn-icon btn-outline-success btn-circle btn-sm mr-2" title="Update">
-                  <i class="flaticon2-edit"></i>
-              </a>';
-
-            
-               $form="<a onclick='activate_inactive(this); return false;'
-               href='users/".$user->id."'
-               class='btn btn-icon ".$color." btn-circle btn-sm mr-2' title='".$title."'>
-               	   <i class=' ".$class."'></i>	           
-                      </a>";
-              $btn.=$form;
-            return $btn;
+                $actionBtn ='<a href="'.route('users.edit',$user).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Update"> <i class="flaticon2-edit"></i> </a>';
+                $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('users.destroy',$user).'" class="btn btn-icon btn-circle btn-xs mr-2 '.($user->user_status?'btn-outline-success':'btn-outline-danger').'" title="'.($user->user_status?'Deactivate':'Activate').'"> <i class="'.($user->user_status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
+            return $actionBtn;
             })
             ->rawColumns(['action','status'])
             ->make(true);
-          
+
         }
         return view('users.index');
-      
+
     }
 
     /**
@@ -101,8 +67,9 @@ public function index(Request $request)
     public function create()
     {
         $roles = Role::get(['id', 'name']);
+        $specialEconomicZones = SpecialEconomicZone::where('status',1)->get();
      //  $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        return view('users.create',compact('roles', 'specialEconomicZones'));
     }
 
     /**
@@ -111,32 +78,23 @@ public function index(Request $request)
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'cnic_no' => 'required|unique:users,cnic_no',
-            'password' => 'required|same:password_confirmation',
-            'roles' => 'required'
-        ]);
-    
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-    
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
-    
+        $user->assignRole($request->input('role_id'));
+
         return redirect()->route('users.index')->with('success','User created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
     }
@@ -147,13 +105,14 @@ public function index(Request $request)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
+        $roles = $user->roles->pluck('id')->toArray();
+        $user->role_id = $roles[0]??null;
         $roles = Role::get(['id', 'name']);
-        $userRoles = $user->roles->pluck('id')->toArray();
+        $specialEconomicZones = SpecialEconomicZone::where('status',1)->get();
 
-        return view('users.edit', compact('user', 'roles', 'userRoles'));
+        return view('users.edit', compact('user', 'roles', 'specialEconomicZones'));
     }
 
     /**
@@ -161,30 +120,19 @@ public function index(Request $request)
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:password_confirmation',
-            'roles' => 'required'
-        ]);
-    
         $input = $request->all();
-        if(!empty($input['password'])){ 
+        if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
-            $input = Arr::except($input,array('password'));    
+            $input = Arr::except($input,array('password'));
         }
-      
-        $user = User::find($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-    
-        $user->assignRole($request->input('roles'));
-    
+        $user->syncRoles($request->input('role_id'));
+
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');
     }
@@ -193,23 +141,15 @@ public function index(Request $request)
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
+        $user->update(['user_status'=>!$user->user_status]);
 
-        $user=User::find($id);
-
-        $ststus=$user->user_status;
-       if($ststus=='Active'){
-           $data['user_status']='Inactive';
-     
-       }else{
-        $data['user_status']='Active';
-       }
-       $user->update($data);
-
-        return redirect()->route('users.index')->with('success','User deleted successfully');
+        return redirect()
+            ->route('users.index')
+            ->with('success_message', 'User status has been changed successfully.');
     }
 
     public function profile(){
@@ -219,7 +159,7 @@ public function index(Request $request)
 
 
     public function profileUpdate(ProfileUpdateRequest $request){
-      
+
         $validated = $request->validated();
         $userUpdate = [
             'name'          =>  $request->name,
@@ -230,17 +170,17 @@ public function index(Request $request)
         if($request->hasFile('profile_avatar')){
             $filename = $request->profile_avatar->getClientOriginalName();
            $request->profile_avatar->storeAs('users',$filename,'public');
-           if (auth()->user()->avatar){
-            Storage::delete('/public/users/'.auth()->user()->avatar);
+           if (auth()->user()->profile_file){
+            Storage::delete('/public/users/'.auth()->user()->profile_file);
           }
-            $userUpdate ['avatar']= $filename;
+            $userUpdate ['profile_file']= $filename;
         }else{
-            $userUpdate ['avatar']= $request->old_profile_avatar;
+            $userUpdate ['profile_file']= $request->old_profile_avatar;
         }
-      
+
         $user = User::findorfail(auth()->user()->id);
         $user->update($userUpdate);
-       
+
          session()->flash(
             'status', 'Your profile has been successfully updated.'
         );
@@ -256,10 +196,10 @@ public function index(Request $request)
      User::find(auth()->user()->id)->update(['password'=> Hash::make($request->password)]);
       $user = User::find(auth()->user()->id);
       $user->new_password=$request->password;
-      
+
       dispatch(new SendChangePasswordEmailJob($user->toArray()));
- 
-    
+
+
         return redirect()->back()->with('success','Password has been change successfully.');
     }
 

@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name','email','password','cnic_no','mobile_no','email_verified_at','user_status','avatar'
+        'name','email','password','username','mobile_no','email_verified_at','user_status','profile_file', 'special_economic_zone_id'
     ];
 //protected $appends = array('new_password');
     /**
@@ -32,7 +32,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-  
+
     /**
      * The attributes that should be cast.
      *
@@ -41,4 +41,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

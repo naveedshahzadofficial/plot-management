@@ -43,7 +43,7 @@
 
                             <div class="cstm m_repeater_section">
                             <div  data-repeater-list="new_plots">
-                                @for($index =0; $index<count(old('new_plots',1)); $index++)
+                                @for($index =0; $index<count(old('new_plots',array(1))); $index++)
                                 @component('plots.plot-split-item', ['index'=> $index]) @endcomponent
                                 @endfor
 

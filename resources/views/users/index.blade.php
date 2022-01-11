@@ -39,12 +39,12 @@
                 <div class="card-header flex-wrap border-0 pb-0">
                     <div class="card-title">
                         <h3 class="card-label">Users
-                       
+
                         </h3>
                     </div>
                     <div class="card-toolbar">
                         <!--begin::Dropdown-->
-                    
+
                         <a href="{{ route('users.create') }}" class="btn btn-primary font-weight-bolder">
                             <span class="svg-icon svg-icon-md">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
@@ -62,6 +62,8 @@
                 </div>
                 <div class="card-body">
                     <!--begin: Search Form-->
+                @component('_components.alerts-default') @endcomponent
+
                     <!--begin: Datatable-->
                     <table class="table  data-table table-separate table-head-custom table-checkable" id="users_datatable">
                         <thead>
@@ -74,7 +76,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        
+
                     </table>
                     <!--end: Datatable-->
                 </div>

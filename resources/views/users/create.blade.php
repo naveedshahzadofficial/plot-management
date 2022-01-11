@@ -50,35 +50,38 @@
 
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>Name</label>
+                                    <label>Name<span class="color-red-700">*</span></label>
                                     <input type="text" name="name" class="form-control" placeholder="Name"  />
                                     @error('name')
                                 <div class="error">{{ $message }}</div>
                               @enderror
                                 </div>
 
+
                                 <div class="col-lg-6">
-                                    <label>Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email"  />
-                                    @error('email')
-                                <div class="error">{{ $message }}</div>
-                              @enderror
+                                    <label>Username<span class="color-red-700">*</span></label>
+                                    <input type="text" name="username" class="form-control" placeholder="Username"  />
+                                    @error('username')
+                                    <div class="error">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                             </div>
 
 
                             <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label>Cnic No.</label>
-                                    <input type="text" name="cnic_no" class="form-control" placeholder="Cnic No"  />
-                                    @error('cnic_no')
-                                <div class="error">{{ $message }}</div>
-                              @enderror
-                                </div>
 
                                 <div class="col-lg-6">
-                                    <label>Mobile Number</label>
+                                    <label>Email<span class="color-red-700">*</span></label>
+                                    <input type="email" name="email" class="form-control" placeholder="Email"  />
+                                    @error('email')
+                                    <div class="error">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+
+                                <div class="col-lg-6">
+                                    <label>Mobile Number<span class="color-red-700">*</span></label>
                                     <input type="text" name="mobile_no" class="form-control" placeholder="Mobile Number"  />
                                     @error('mobile_no')
                                 <div class="error">{{ $message }}</div>
@@ -90,7 +93,7 @@
 
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label>Password:</label>
+                                    <label>Password<span class="color-red-700">*</span></label>
                                     <input type="text" id="password" name="password" class="form-control" placeholder="Password"  />
                                     @error('password')
                                 <div class="error">{{ $message }}</div>
@@ -98,7 +101,7 @@
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <label>Confirm Password:</label>
+                                    <label>Confirm Password<span class="color-red-700">*</span></label>
                                     <input type="text" name="password_confirmation" class="form-control" placeholder="Confirm Password"  />
                                     @error('password_confirmation')
                                 <div class="error">{{ $message }}</div>
@@ -112,9 +115,9 @@
 
 
                                 <div class="col-lg-6">
-                                    <label>Role</label>
+                                    <label>Role<span class="color-red-700">*</span></label>
                                     <div class="col-form-label">
-                                        <select class="custom-select custom-select-lg mb-3" name="roles" id="roles" required>
+                                        <select class="custom-select custom-select-lg mb-3 select2" name="role_id" id="role_id" required>
                                             <option value="">Select Role</option>
                                             @foreach($roles as $role)
                                             <option value="{{ $role->id }}"> {{ $role->name }} </option>
@@ -127,29 +130,47 @@
 
                                 </div>
 
-                                <div class="col-lg-6">
-                                    <label>Status</label>
+                                <div class="col-lg-6" id="sez_div">
+                                    <label>Special Economic Zone<span class="color-red-700">*</span></label>
                                     <div class="col-form-label">
-                                        <div class="radio-inline">
-                                            <label class="radio radio-primary">
-                                                <input type="radio" name="user_status" value="Active">
-                                                <span></span>Active</label>
-
-
-                                            <label class="radio radio-primary">
-                                                <input type="radio" name="user_status" value="Inactive">
-                                                <span></span>Inactive</label>
-
-                                        </div>
-                                        @error('user_status')
-                                <div class="error">{{ $message }}</div>
-                              @enderror
+                                        <select class="custom-select custom-select-lg mb-3 select2" name="special_economic_zone_id" id="special_economic_zone_id" required>
+                                            <option value="">Select Zone</option>
+                                            @foreach($specialEconomicZones as $specialEconomicZone)
+                                                <option value="{{ $specialEconomicZone->id }}"> {{ $specialEconomicZone->name }} </option>
+                                            @endforeach
+                                        </select>
+                                        @error('special_economic_zone_id')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
 
 
 
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label>Status<span class="color-red-700">*</span></label>
+                                    <div class="col-form-label">
+                                        <div class="radio-inline">
+                                            <label class="radio radio-primary">
+                                                <input type="radio" name="user_status" value="1">
+                                                <span></span>Active</label>
+
+
+                                            <label class="radio radio-primary">
+                                                <input type="radio" name="user_status" value="0">
+                                                <span></span>Inactive</label>
+
+                                        </div>
+                                        @error('user_status')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                </div>
                             </div>
 
 
@@ -181,10 +202,11 @@
         'use strict';
         // Basic Form
         $('#user_add').validate({
+            ignore: ":hidden",
             rules: {
                 name: "required",
                 email: "required",
-                cnic_no: "required",
+                username: "required",
 
                 mobile_no: {
                     required: true,
@@ -197,7 +219,8 @@
                 password_confirmation : {
                     equalTo : '[name="password"]'
                 },
-                roles: "required",
+                role_id: "required",
+                special_economic_zone_id: "required",
                 user_status: "required"
             },
             messages: {
@@ -207,8 +230,8 @@
                 email: {
                     required: "Email is required."
                 },
-                cnic_no: {
-                    required: "Cnic No is required."
+                username: {
+                    required: "Username is required."
                 },
                 mobile_no: {
                     required: "Mobile No is required."
@@ -219,8 +242,11 @@
                 password_confirmation: {
                     required: "Confirm Password is required."
                 },
-                roles: {
+                role_id: {
                     required: "Role is required."
+                },
+                special_economic_zone_id: {
+                    required: "Special Economic Zone is required."
                 },
                 user_status: {
                     required: "Status is required."
@@ -244,6 +270,16 @@
             }
         });
 
+        $('#role_id').change(function (){
+            let role_id = $(this).val();
+            if(role_id === '1' || role_id=== '2') {
+                $('#special_economic_zone_id').val('');
+                $('#special_economic_zone_id').trigger('change.select2');
+                $('#sez_div').hide();
+            }else {
+                $('#sez_div').show();
+            }
+        });
 
     });
 </script>
