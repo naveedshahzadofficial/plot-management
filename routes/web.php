@@ -10,7 +10,8 @@ use App\Http\Controllers\ {
     SezRateController,
     MasterPlanController,
     IndustrialZoneController,
-    PlotController
+    PlotController,
+    PlotAllotmentController
 };
 
 Route::get('/', function () {
@@ -37,6 +38,7 @@ Route::post('plots/merge', [PlotController::class, 'mergeStore'])->name('plots.m
 Route::post('plots/zones/ajax', [PlotController::class, 'zonePlots'])->name('plots.zone.ajax');
 Route::post('plots/merge-area/ajax', [PlotController::class, 'mergePlotsArea'])->name('plots.merge-area.ajax');
 Route::resource('plots', PlotController::class);
+Route::resource('plot-allotments', PlotAllotmentController::class);
 
 
 Route::get('profile', [App\Http\Controllers\UsersController::class, 'profile'])->name('profile');

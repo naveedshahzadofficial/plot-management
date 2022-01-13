@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SectorSeeder::class);
         $this->call(SpecialEconomicZoneSeeder::class);
         $this->call(PlotSeeder::class);
+        $this->call(BusinessStructureSeeder::class);
     }
 }
