@@ -13,7 +13,21 @@
 @endpush
 @section('content')
     <!--begin::Entry-->
-    <div class="d-flex flex-column-fluid">
+    <div class="d-flex flex-column-fluid"
+         x-data="{
+         owner_question_id: '{{ old('owner_question_id') }}',
+         business_structure_id: '{{ old('business_structure_id') }}',
+         }"
+         x-init="() => {
+    select2 = $($refs.select).select2();
+    select2.on('select2:select', (event) => {
+      business_structure_id = event.target.value;
+    });
+    $watch('business_structure_id', (value) => {
+      select2.val(value).trigger('change');
+    });
+  }"
+    >
         <!--begin::Container-->
         <div class="container">
             <div class="">
@@ -34,7 +48,7 @@
                                 @hasanyrole('Super Admin|Admin')
                                 <div class="col-lg-6">
                                     <label>Special Economic Zone <span class="color-red-700">*</span></label>
-                                        <select class="form-control select2" name="special_economic_zone_id">
+                                        <select class="form-control select2" name="special_economic_zone_id" required style="width: 100% !important;">
                                             <option value="">Select Economic Zone</option>
                                             @foreach($specialEconomicZones as $specialEconomicZone)
                                                 <option {{ old('special_economic_zone_id')== $specialEconomicZone->id ? 'selected': '' }} value="{{ $specialEconomicZone->id }}"> {{ $specialEconomicZone->name }} </option>
@@ -55,7 +69,7 @@
                                                 @isset($questions)
                                                     @foreach($questions as $question)
                                                 <label class="radio radio-primary">
-                                                    <input type="radio" name="owner_question_id" value="{{ $question->id }}" {{ old('owner_question_id')==$question->id?'checked':'' }}>
+                                                    <input type="radio" name="owner_question_id" x-model="owner_question_id" value="{{ $question->id }}" {{ old('owner_question_id')==$question->id?'checked':'' }} required>
                                                     <span></span>{{ $question->name }}</label>
                                                     @endforeach
                                                 @endisset
@@ -70,16 +84,16 @@
                             </div>
                             </div>
 
-                            <h4 class="font-weight-bold section_heading text-white">
+                            <h4 x-show.transition.opacity="owner_question_id=='1'" class="font-weight-bold section_heading text-white">
                                 <span>Business Profile </span>
                             </h4>
 
-                            <div class="section_box">
+                            <div x-show.transition.opacity="owner_question_id=='1'" class="section_box">
 
                             <div class="row form-group">
                                 <div class="col-lg-6">
                                     <label>Company/ Business Name <span class="color-red-700">*</span></label>
-                                    <input maxlength="50" type="text" name="business_name" class="form-control" placeholder="Business Name" value="{{ old('business_name') }}" />
+                                    <input maxlength="50" type="text" name="business_name" class="form-control" placeholder="Business Name" value="{{ old('business_name') }}" required />
                                     @error('business_name')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
@@ -87,7 +101,7 @@
 
                                 <div class="col-lg-6">
                                     <label>Business Structure <span class="color-red-700">*</span></label>
-                                    <select class="form-control select2" name="business_structure_id">
+                                    <select x-ref="select" class="form-control select2" name="business_structure_id"   style="width: 100% !important;" required>
                                         <option value="">Select Business Structure</option>
                                         @foreach($businessStructures as $businessStructure)
                                             <option {{ old('business_structure_id')== $businessStructure->id ? 'selected': '' }} value="{{ $businessStructure->id }}"> {{ $businessStructure->structure_name }} </option>
@@ -100,10 +114,10 @@
 
                             </div>
 
-                            <div class="row form-group">
+                            <div x-show.transition.opacity="['3','4','5'].includes(business_structure_id)" class="row form-group">
                                 <div class="col-lg-6">
                                     <label>SECP Company Incorporation No. (CUIN) <span class="color-red-700">*</span></label>
-                                    <input maxlength="20" type="text" name="secp_company_incorporation_no" class="form-control" placeholder="SECP Company Incorporation No" value="{{ old('secp_company_incorporation_no') }}" />
+                                    <input maxlength="20" type="text" name="secp_company_incorporation_no" class="form-control" placeholder="SECP Company Incorporation No" value="{{ old('secp_company_incorporation_no') }}" required />
                                     @error('secp_company_incorporation_no')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
@@ -111,7 +125,7 @@
 
                                 <div class="col-lg-6">
                                     <label>Company Incorporation Date <span class="color-red-700">*</span></label>
-                                    <input maxlength="20" type="text" name="company_incorporation_date" class="form-control datepicker w-100" readonly placeholder="Company Incorporation Date" value="{{ old('company_incorporation_date') }}" />
+                                    <input maxlength="20" type="text" name="company_incorporation_date" class="form-control datepicker w-100" readonly placeholder="Company Incorporation Date" value="{{ old('company_incorporation_date') }}" required />
                                     @error('company_incorporation_date')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
@@ -119,11 +133,11 @@
 
                             </div>
 
-                            <div class="row form-group">
+                            <div x-show.transition.opacity="business_structure_id!=''" class="row form-group">
 
-                                <div class="col-lg-6">
+                                <div x-show.transition.opacity="business_structure_id=='2'" class="col-lg-6">
                                     <label>Business Registration No. <span class="color-red-700">*</span></label>
-                                    <input maxlength="20" type="text" name="business_registration_no" class="form-control" placeholder="Business NTN" value="{{ old('business_registration_no') }}" />
+                                    <input maxlength="20" type="text" name="business_registration_no" class="form-control" placeholder="Registration No." value="{{ old('business_registration_no') }}" required />
                                     @error('business_registration_no')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
@@ -131,7 +145,7 @@
 
                                 <div class="col-lg-6">
                                     <label>National Tax Number (Business) <span class="color-red-700">*</span></label>
-                                    <input maxlength="20" type="text" name="business_ntn" class="form-control" placeholder="Business NTN" value="{{ old('business_ntn') }}" />
+                                    <input maxlength="20" type="text" name="business_ntn" class="form-control" placeholder="Business NTN" value="{{ old('business_ntn') }}" required />
                                     @error('business_ntn')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
@@ -139,19 +153,19 @@
 
                             </div>
 
-                            <div class="row form-group">
+                            <div  x-show.transition.opacity="['3','4','5'].includes(business_structure_id)"  class="row form-group">
                                 <div class="col-lg-12">
-                                    <label>Company Structure <span class="color-red-700"></span></label>
+                                    <label>Company Structure <span class="color-red-700">*</span></label>
                                     <div class="col-form-label">
                                         <div class="radio-inline">
                                             <label class="radio radio-primary">
-                                                <input type="radio" name="company_structure" value="Joint Venture with Foreign Company" {{ old('company_structure')=='Joint Venture with Foreign Company'?'checked':'' }}>
+                                                <input type="radio" name="company_structure" value="Joint Venture with Foreign Company" {{ old('company_structure')=='Joint Venture with Foreign Company'?'checked':'' }} required>
                                                 <span></span>Joint Venture with Foreign Company</label>
                                             <label class="radio radio-primary">
-                                                <input type="radio" name="company_structure" value="Foreign Company" {{ old('company_structure')=='Foreign Company'?'checked':'' }}>
+                                                <input type="radio" name="company_structure" value="Foreign Company" {{ old('company_structure')=='Foreign Company'?'checked':'' }} required>
                                                 <span></span>Foreign Company</label>
                                             <label class="radio radio-primary">
-                                                <input type="radio" name="company_structure" value="Local Company" {{ old('company_structure')=='Local Company'?'checked':'' }}>
+                                                <input type="radio" name="company_structure" value="Local Company" {{ old('company_structure')=='Local Company'?'checked':'' }} required>
                                                 <span></span>Local Company</label>
 
                                         </div>
@@ -162,23 +176,23 @@
                             </div>
                             <!-- Section Basic Business Profile -->
 
-                            <h4 class="mt-10 font-weight-bold section_heading text-white">
+                            <h4 x-show.transition.opacity="owner_question_id=='1'" class="mt-10 font-weight-bold section_heading text-white">
                                 <span>Business Address</span>
                             </h4>
 
-                            <div class="section_box">
+                            <div x-show.transition.opacity="owner_question_id=='1'" class="section_box">
 
                                 <div class="row form-group">
                                     <div class="col-lg-6">
                                     <label>Address <span class="color-red-700">*</span></label>
-                                    <input maxlength="254" type="text" name="business_address" class="form-control" placeholder="Address" value="{{ old('business_address') }}" />
+                                    <input maxlength="254" type="text" name="business_address" class="form-control" placeholder="Address" value="{{ old('business_address') }}" required />
                                     @error('business_address')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Province <span class="color-red-700">*</span></label>
-                                        <select class="form-control select2" name="province_id" onchange="getProvinceDistricts(this)">
+                                        <select class="form-control select2" name="province_id" onchange="getProvinceDistricts(this)" style="width: 100% !important;" required>
                                             <option value="">Select Province</option>
                                             @foreach($provinces as $province)
                                                 <option {{ old('province_id')== $province->id ? 'selected': '' }} value="{{ $province->id }}"> {{ $province->province_name }} </option>
@@ -192,7 +206,7 @@
                                 <div class="row form-group">
                                     <div class="col-lg-6">
                                         <label>District <span class="color-red-700">*</span></label>
-                                        <select class="form-control select2 district_ids" name="district_id" onchange="getDistrictTehsils(this)" id="district_id">
+                                        <select class="form-control select2 district_ids" name="district_id" onchange="getDistrictTehsils(this)" id="district_id" style="width: 100% !important;" required>
                                             <option value="">Select District</option>
                                         </select>
                                         @error('district_id')
@@ -201,8 +215,8 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <label>City/ Tehsil <span class="color-red-700">*</span></label>
-                                        <select class="form-control select2 tehsile_ids" name="tehsil_id" id="tehsil_id">
-                                            <option value="">Select City</option>
+                                        <select class="form-control select2 tehsile_ids" name="tehsil_id" id="tehsil_id" style="width: 100% !important;" required>
+                                            <option value="">Select City/ Tehsil</option>
                                         </select>
                                         @error('tehsil_id')
                                         <div class="error">{{ $message }}</div>
@@ -212,15 +226,15 @@
 
                             </div>
 
-                            <h4 class="mt-10 font-weight-bold section_heading text-white">
+                            <h4 x-show.transition.opacity="owner_question_id=='1'" class="mt-10 font-weight-bold section_heading text-white">
                                 <span>Business Contact Info</span>
                             </h4>
 
-                            <div class="section_box">
+                            <div x-show.transition.opacity="owner_question_id=='1'" class="section_box">
                                 <div class="row form-group">
                                     <div class="col-lg-6">
                                         <label>Landline Phone No. <span class="color-red-700">*</span></label>
-                                        <input maxlength="20" type="text" name="business_phone_no" class="form-control" placeholder="Phone No." value="{{ old('business_phone_no') }}" />
+                                        <input maxlength="20" type="text" name="business_phone_no" class="form-control" placeholder="Phone No." value="{{ old('business_phone_no') }}" required />
                                         @error('business_phone_no')
                                         <div class="error">{{ $message }}</div>
                                         @enderror
@@ -252,15 +266,15 @@
                                 </div>
                             </div>
 
-                            <h4 class="mt-10 font-weight-bold section_heading text-white">
-                                <span>Principal Officer/ Focal Person</span>
+                            <h4 x-show.transition.opacity="owner_question_id=='1' || owner_question_id=='2'" class="mt-10 font-weight-bold section_heading text-white">
+                                <span x-text="owner_question_id=='1'?'Principal Officer/ Focal Person':'Individual Profile'"></span>
                             </h4>
 
-                            <div class="section_box">
+                            <div x-show.transition.opacity="owner_question_id=='1' || owner_question_id=='2'" class="section_box">
                                 <div class="row form-group">
                                 <div class="col-lg-6">
                                     <label>Full Name <span class="color-red-700">*</span></label>
-                                    <input maxlength="50" type="text" name="full_name" class="form-control" placeholder="Full Name" value="{{ old('full_name') }}" />
+                                    <input maxlength="50" type="text" name="full_name" class="form-control" placeholder="Full Name" value="{{ old('full_name') }}" required />
                                     @error('full_name')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
@@ -268,7 +282,7 @@
 
                                 <div class="col-lg-6">
                                     <label>CNIC No. <span class="color-red-700">*</span></label>
-                                    <input maxlength="20" type="text" name="cnic_no" class="form-control cnic-no" placeholder="CNIC No." value="{{ old('cnic_no') }}" />
+                                    <input maxlength="20" type="text" name="cnic_no" class="form-control cnic-no" placeholder="CNIC No." value="{{ old('cnic_no') }}" required />
                                     @error('cnic_no')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
@@ -279,7 +293,7 @@
 
                                     <div class="col-lg-6">
                                         <label>Mobile No. <span class="color-red-700">*</span></label>
-                                        <input maxlength="50" type="text" name="mobile_no" class="form-control mobile-no" placeholder="Mobile No." value="{{ old('mobile_no') }}" />
+                                        <input maxlength="50" type="text" name="mobile_no" class="form-control mobile-no" placeholder="Mobile No." value="{{ old('mobile_no') }}" required />
                                         @error('mobile_no')
                                         <div class="error">{{ $message }}</div>
                                         @enderror
@@ -287,7 +301,7 @@
 
                                     <div class="col-lg-6">
                                         <label>Email Address <span class="color-red-700"></span></label>
-                                        <input maxlength="100" type="email" name="email_address" class="form-control" placeholder="Email Address" value="{{ old('email_address') }}" />
+                                        <input maxlength="100" type="email" name="email_address" class="form-control" placeholder="Email Address" value="{{ old('email_address') }}"  />
                                         @error('email_address')
                                         <div class="error">{{ $message }}</div>
                                         @enderror
@@ -302,41 +316,23 @@
                                         <div class="error">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-6">
+
+                                    <div x-show.transition.opacity="owner_question_id=='1'" class="col-lg-6">
                                         <label>Fax No. <span class="color-red-700"></span></label>
-                                        <input maxlength="20" type="text" name="fax_no" class="form-control" placeholder="Fax No." value="{{ old('fax_no') }}" />
+                                        <input maxlength="20" type="text" name="fax_no" class="form-control" placeholder="Fax No." value="{{ old('fax_no') }}"  />
                                         @error('fax_no')
                                         <div class="error">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col-lg-6">
-                                        <label>Status <span class="color-red-700"></span></label>
-                                        <div class="col-form-label">
-                                            <div class="radio-inline">
-                                                <label class="radio radio-primary">
-                                                    <input type="radio" name="person_status" value="Active" {{ old('person_status')=='Active'?'checked':'' }}>
-                                                    <span></span>Active</label>
 
-                                                <label class="radio radio-primary">
-                                                    <input type="radio" name="person_status" value="Inactive" {{ old('person_status')=='Inactive'?'checked':'' }}>
-                                                    <span></span>Inactive</label>
-
-                                            </div>
-                                            @error('person_status')
-                                            <div class="error">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                    </div>
-                                </div>
                             </div>
 
-                            <h4 class="mt-10 font-weight-bold section_heading text-white">
+                            <h4 x-show.transition.opacity="owner_question_id=='2'" class="mt-10 font-weight-bold section_heading text-white">
                                 <span>Permanent/ Postal Address</span>
                             </h4>
-                            <div class="section_box">
+
+                            <div x-show.transition.opacity="owner_question_id=='2'" class="section_box">
 
                                 <div class="rep-addresses m_repeater_section">
 
@@ -360,14 +356,23 @@
                             </div>
 
                             <h4 class="mt-10 font-weight-bold section_heading text-white">
-                                <span>Status</span>
+                                <span>Status & Remark</span>
                             </h4>
 
 
                             <div class="section_box">
+                                <div class="row form-group">
+                                    <div class="col-lg-12">
+                                    <label>Remark <span class="color-red-700"></span></label>
+                                        <textarea name="remark" class="form-control" rows="5">{{ old('remark') }}</textarea>
+                                        @error('remark')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             <div class="row form-group">
                                 <div class="col-lg-6">
-                                    <label>Status <span class="color-red-700"></span></label>
+                                    <label>Status <span class="color-red-700">*</span></label>
                                     <div class="col-form-label">
                                         <div class="radio-inline">
                                             <label class="radio radio-primary">
@@ -413,34 +418,80 @@
         $(document).ready(function() {
             'use strict';
             $('#form_add_edit').validate({
+                ignore: ":hidden",
                 rules: {
-                    special_economic_zone_id: "required",
-                    plot_no: "required",
-                    plot_type: "required",
-                    plot_size: "required",
-                    plot_status: "required",
-                    status: "required"
+                    owner_question_id: "required",
+                    full_name: "required",
+                    cnic_no: "required",
+                    mobile_no: "required",
+                    status: "required",
+
+                    business_name: "required",
+                    business_structure_id: "required",
+                    business_address: "required",
+                    province_id: "required",
+                    district_id: "required",
+                    tehsil_id: "required",
+                    business_phone_no: "required",
+                    business_ntn: "required",
+                    business_registration_no: "required",
+                    secp_company_incorporation_no: "required",
+                    company_incorporation_date: "required",
+                    company_structure: "required",
+
                 },
                 messages: {
-                    special_economic_zone_id: {
-                        required: "Economic Zone is required."
+                    owner_question_id: {
+                        required: "please select your choice."
                     },
-                    plot_no: {
-                        required: "Plot No. is required."
+                    full_name: {
+                        required: "Full Name is required."
                     },
-                    plot_type: {
-                        required: "Plot type is required."
+                    cnic_no: {
+                        required: "CNIC No. is required."
                     },
-                    plot_size: {
-                        required: "Plot Size is required."
-                    },
-                    plot_status: {
-                        required: "Plot Status is required."
+                    mobile_no: {
+                        required: "Mobile No. is required."
                     },
                     status: {
                         required: "Status  is required."
-                    }
-
+                    },
+                    business_name: {
+                        required: "Business Name is required."
+                    },
+                    business_structure_id: {
+                        required: "Business Structure is required."
+                    },
+                    business_address: {
+                        required: "Business Address is required."
+                    },
+                    province_id: {
+                        required: "Province is required."
+                    },
+                    district_id: {
+                        required: "District is required."
+                    },
+                    tehsil_id: {
+                        required: "Tehsil is required."
+                    },
+                    business_phone_no: {
+                        required: "Landline Phone No. is required."
+                    },
+                    business_ntn: {
+                        required: "National Tax Number (Business) is required."
+                    },
+                    business_registration_no: {
+                        required: "Business Registration No. is required."
+                    },
+                    secp_company_incorporation_no: {
+                        required: "SECP Company Incorporation No. is required."
+                    },
+                    company_incorporation_date: {
+                        required: "Company Incorporation Date is required."
+                    },
+                    company_structure: {
+                        required: "Company Structure is required."
+                    },
 
                 },
                 highlight: function(element) {
@@ -460,6 +511,7 @@
                 }
             });
 
+
             $('.m_repeater_section').repeater({
                 initEmpty: false,
                 defaultValues: {
@@ -470,6 +522,7 @@
                     $(this).find('.select2.select2-container').remove();
                     $(this).find('.select2').removeClass('select2-hidden-accessible');
                     $('.select2').select2();
+                    customJqueryValidation();
                 },
 
                 hide: function(deleteElement) {
@@ -480,7 +533,9 @@
                 isFirstItemUndeletable: true
             });
 
-            $(".cnic-mask").inputmask("mask", {
+            customJqueryValidation();
+
+            $(".cnic-no").inputmask("mask", {
                 "mask": "99999-9999999-9"
             });
 
@@ -538,6 +593,47 @@
         var selected_tehsil = {{ old('tehsil_id') }};
         getTehsils('#tehsil_id',{{ old('district_id') }}, selected_tehsil);
         @endif
+
+        function customJqueryValidation(){
+            let addresses_input = $('input[name^="addresses"]');
+            addresses_input.filter('input[name$="[address]"]').each(function() {
+                $(this).rules("add", {
+                    required: true,
+                    messages: {
+                        required: "Address is required."
+                    }
+                });
+            });
+
+            let addresses_select = $('select[name^="addresses"]');
+            addresses_select.filter('select[name$="[province_id]"]').each(function() {
+                $(this).rules("add", {
+                    required: true,
+                    messages: {
+                        required: "Province is required."
+                    }
+                });
+            });
+
+            addresses_select.filter('select[name$="[district_id]"]').each(function() {
+                $(this).rules("add", {
+                    required: true,
+                    messages: {
+                        required: "District is required."
+                    }
+                });
+            });
+
+            addresses_select.filter('select[name$="[tehsil_id]"]').each(function() {
+                $(this).rules("add", {
+                    required: true,
+                    messages: {
+                        required: "City/ Tehsil is required."
+                    }
+                });
+            });
+        }
+
 
     </script>
 @endpush

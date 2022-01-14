@@ -48,10 +48,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>SEZ</th>
-                                <th>Plot No.</th>
-                                <th>Type</th>
-                                <th>Plot Size (Acres)</th>
-                                <th class="text-center">Plot Status</th>
+                                <th>Business Name/ Name</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -89,7 +86,7 @@
                 serverSide: true,
                 searching: true,
                 ajax: {
-                    url: '{{ route('plots.index') }}',
+                    url: '{{ route('plot-allotments.index') }}',
                     type: "GET",
                     data: function (row) {
                         row.test = 1;
@@ -98,10 +95,7 @@
                 columns: [
                     {data: 'id', searchable: false, visible: false, printable: false},
                     {data: 'specialEconomicZone', name: 'specialEconomicZone.name'},
-                    {data: 'plot_no', name: 'plot_no'},
-                    {data: 'plot_type', name: 'plot_type'},
-                    {data: 'plot_size', name: 'plot_size'},
-                    {data: 'plot_status', name: 'plot_status', class: 'text-center'},
+                    {data: 'name', name: 'name'},
                     {data: 'status', name: 'status', class: 'text-center'},
                     {data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-center not-exported'},
                 ],

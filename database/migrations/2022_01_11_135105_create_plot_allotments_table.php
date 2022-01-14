@@ -19,6 +19,7 @@ class CreatePlotAllotmentsTable extends Migration
             $table->foreignId('owner_question_id')->nullable()->constrained('questions');
             $table->string('business_name')->nullable();
             $table->foreignId('business_structure_id')->nullable()->constrained();
+            $table->string('company_structure')->nullable();
             $table->string('company_incorporation_date')->nullable();
             $table->string('secp_company_incorporation_no')->nullable();
             $table->string('business_registration_no')->nullable();
@@ -37,9 +38,7 @@ class CreatePlotAllotmentsTable extends Migration
             $table->string('email_address')->nullable();
             $table->string('phone_no')->nullable();
             $table->string('fax_no')->nullable();
-            $table->string('person_status')->nullable();
-
-
+            $table->text('remark')->nullable();
             $table->boolean('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
