@@ -2,7 +2,7 @@
 					<!--begin::Brand-->
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
-						<a href="{{ route('home') }}" class="brand-logo px-10">
+						<a href="{{ route('home') }}" class="brand-logo">
 							<img alt="Logo" src="{{ asset('assets/media/logos/logo-inner.png')  }} " />
 						</a>
 						<!--end::Logo-->
