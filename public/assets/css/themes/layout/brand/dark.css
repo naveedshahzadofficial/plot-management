@@ -1,6 +1,6 @@
 @media (min-width: 992px) {
   .brand {
-    background-color: #065959 !important;
+    background-color: #001564 !important;
     -webkit-box-shadow: none;
     box-shadow: none; }
     .brand .btn i {
@@ -24,7 +24,7 @@
 
 @media (max-width: 991.98px) {
   .header-mobile {
-    background-color: #065959 !important; }
+    background-color: #001564 !important; }
     .header-mobile .burger-icon span {
       background-color: #484f66; }
       .header-mobile .burger-icon span::before, .header-mobile .burger-icon span::after {

@@ -8,7 +8,7 @@
     <div class="row form-group">
         <div class="col-lg-6">
             <label>Address <span class="color-red-700">*</span></label>
-            <input maxlength="254" type="text" name="address" class="form-control" placeholder="Address" value="{{ old("addresses.{$index}.address") }}" required />
+            <input maxlength="254" type="text" name="address" class="form-control" placeholder="Address" value="{{ old("addresses.{$index}.address", $addresses[$index]->address??'') }}" required />
             @error("addresses.{$index}.address")
             <div class="error">{{ $message }}</div>
             @enderror
@@ -18,7 +18,7 @@
             <select class="form-control select2" name="province_id" onchange="getProvinceDistricts(this)" required style="width: 100% !important;">
                 <option value="">Select Province</option>
                 @foreach($provinces as $province)
-                    <option {{ old("addresses.{$index}.province_id")== $province->id ? 'selected': '' }} value="{{ $province->id }}"> {{ $province->province_name }} </option>
+                    <option {{ old("addresses.{$index}.province_id", $addresses[$index]->province_id??'')== $province->id ? 'selected': '' }} value="{{ $province->id }}"> {{ $province->province_name }} </option>
                 @endforeach
             </select>
             @error("addresses.{$index}.province_id")
