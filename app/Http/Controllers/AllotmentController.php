@@ -121,7 +121,6 @@ class AllotmentController extends Controller
      */
     public function destroy(PlotAllotment $plotAllotment, Allotment $allotment)
     {
-        
         $allotment->update(['status'=>!$allotment->status]);
         return redirect()
             ->route('plot-allotments.allotments.index',$plotAllotment)
