@@ -2,9 +2,6 @@
 @push('title', 'Merge Plots')
 @push('breadcrumb-items')
     <li class="breadcrumb-item">
-        <a  class="text-muted">System Definitions</a>
-    </li>
-    <li class="breadcrumb-item">
         <a href="{{ route('plots.index') }}" class="text-muted">Plots</a>
     </li>
     <li class="breadcrumb-item">

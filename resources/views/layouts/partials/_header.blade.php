@@ -3,23 +3,23 @@
 						<div class="container-fluid d-flex align-items-stretch justify-content-between">
 							<!--begin::Header Menu Wrapper-->
 							<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
-								
+                                <img class="mt-4" alt="Logo" src="{{ asset('assets/media/logos/inner-header-text.png')  }} " />
 							</div>
 							<!--end::Header Menu Wrapper-->
 							<!--begin::Topbar-->
 							<div class="topbar">
-							
-							
+
+
 								<div class="dropdown">
 									<!--begin::Toggle-->
-									
+
 									<!--end::Toggle-->
 									<!--begin::Dropdown-->
 									<div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
 										<!--begin::Nav-->
 										<ul class="navi navi-hover py-4">
 											<!--begin::Item-->
-											
+
 											<!--end::Item-->
 											<!--begin::Item-->
 											<li class="navi-item active">
@@ -94,20 +94,20 @@
 				<div class="d-flex align-items-center mt-5">
 					<div class="symbol symbol-100 mr-5">
 					@if(auth()->user()->avatar)
-					
+
 					<div class="symbol-label" style="background-image:url('{{asset('storage/users/'.auth()->user()->avatar)}}')"></div>
 						<i class="symbol-badge bg-success"></i>
 					</div>
-				
+
 					@else
 					<div class="symbol-label" style="background-image:url(assets/media/users/blank.png)"></div>
 						<i class="symbol-badge bg-success"></i>
 					</div>
 				@endif
-						
+
 					<div class="d-flex flex-column">
 						<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{  ucfirst(Auth::user()->name) }}</a>
-						
+
 						<div class="navi mt-2">
 							<a href="#" class="navi-item">
 								<span class="navi-link p-0 pb-2">
@@ -134,7 +134,7 @@
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 							@csrf
 						</form>
-							
+
 						</div>
 					</div>
 				</div>
@@ -194,15 +194,15 @@
 					</div>
 				</a>
 
-				
+
 					<!--begin::Item-->
-				
+
 				</div>
 				<!--end::Nav-->
 				<!--begin::Separator-->
 				<div class="separator separator-dashed my-7"></div>
 				<!--end::Separator-->
-			
+
 			</div>
 			<!--end::Content-->
 		</div>

@@ -19,6 +19,6 @@ class DeveloperSeeder extends Seeder
         Developer::truncate();
         DB::statement("SET foreign_key_checks=1");
 
-        Developer::factory(300)->create();
+        Developer::factory(10)->create();
     }
 }

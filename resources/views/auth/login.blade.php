@@ -29,9 +29,9 @@
                     <!--begin::Title-->
                     <!--begin::Form group-->
                     <div class="form-group">
-                        <label  for="email" class="auth-form-label">{{ __('Email Address') }}<span class="color-red-700">*</span></label>
+                        <label  for="email" class="auth-form-label">{{ __('Username or Email') }}<span class="color-red-700">*</span></label>
 
-                        <input id="email" type="email" class="rounded-lg border-0 form-control @error('email') is-invalid @enderror" autocomplete="off" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+                        <input id="email" type="text" class="rounded-lg border-0 form-control @error('email') is-invalid @enderror" autocomplete="off" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Username or Email">
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">

@@ -53,9 +53,9 @@ class PlotAllotmentController extends Controller
                         $query->where('status', $status_id);
                 })
                 ->addColumn('action', function(PlotAllotment $plotAllotment){
-                    $actionBtn ='<a href="'.route('plot-allotments.edit',$plotAllotment).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Update"> <i class="flaticon2-edit"></i> </a>';
-                    $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('plot-allotments.destroy',$plotAllotment).'" class="btn btn-icon btn-circle btn-xs mr-2 '.($plotAllotment->status?'btn-outline-success':'btn-outline-danger').'" title="'.($plotAllotment->status?'Deactivate':'Activate').'"> <i class="'.($plotAllotment->status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
-                    $actionBtn .='<a href="'.route('plot-allotments.allotments.index',$plotAllotment).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Allotment"> <i class="fa fa-building"></i> </a>';
+                    $actionBtn ='<a href="'.route('plot-allotments.edit',$plotAllotment).'" class="btn btn-icon btn-outline-success btn-circle btn-sm mr-2" title="Update"> <i class="flaticon2-edit"></i> </a>';
+                    $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('plot-allotments.destroy',$plotAllotment).'" class="btn btn-icon btn-circle btn-sm mr-2 '.($plotAllotment->status?'btn-outline-success':'btn-outline-danger').'" title="'.($plotAllotment->status?'Deactivate':'Activate').'"> <i class="'.($plotAllotment->status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
+                    $actionBtn .='<a href="'.route('plot-allotments.allotments.index',$plotAllotment).'" class="btn btn-icon btn-outline-success btn-circle btn-sm mr-2" title="Allotment"> <i class="fa fa-building"></i> </a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['specialEconomicZone','name','status','action'])

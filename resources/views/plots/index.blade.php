@@ -2,9 +2,6 @@
 @push('title', 'Plots')
 @push('breadcrumb-items')
     <li class="breadcrumb-item">
-        <a  class="text-muted">System Definitions</a>
-    </li>
-    <li class="breadcrumb-item">
         <a class="text-muted">Plots</a>
     </li>
 @endpush

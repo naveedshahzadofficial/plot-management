@@ -47,8 +47,8 @@ public function index(Request $request)
                 return '<span class="label label-lg font-weight-bold label-inline '.($user->user_status?'label-light-success':'label-light-danger').'">'.($user->user_status?'Active':'Inactive').'</span>';
             })
             ->addColumn('action', function(User $user){
-                $actionBtn ='<a href="'.route('users.edit',$user).'" class="btn btn-icon btn-outline-success btn-circle btn-xs mr-2" title="Update"> <i class="flaticon2-edit"></i> </a>';
-                $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('users.destroy',$user).'" class="btn btn-icon btn-circle btn-xs mr-2 '.($user->user_status?'btn-outline-success':'btn-outline-danger').'" title="'.($user->user_status?'Deactivate':'Activate').'"> <i class="'.($user->user_status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
+                $actionBtn ='<a href="'.route('users.edit',$user).'" class="btn btn-icon btn-outline-success btn-circle btn-sm mr-2" title="Update"> <i class="flaticon2-edit"></i> </a>';
+                $actionBtn .='<a onclick="activate_inactive(this); return false;" href="'.route('users.destroy',$user).'" class="btn btn-icon btn-circle btn-sm mr-2 '.($user->user_status?'btn-outline-success':'btn-outline-danger').'" title="'.($user->user_status?'Deactivate':'Activate').'"> <i class="'.($user->user_status?'icon-xl fas fa-toggle-on':'icon-xl fas fa-toggle-off').'"></i> </a>';
             return $actionBtn;
             })
             ->rawColumns(['action','status'])
