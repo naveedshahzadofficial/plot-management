@@ -27,4 +27,14 @@ class PlotAllotment extends Model
     {
         return $this->belongsTo(SpecialEconomicZone::class);
     }
+
+    function allotments(): HasMany
+    {
+        return $this->hasMany(Allotment::class);
+    }
+
+    public function getAllotmentNameAttribute(): string
+    {
+        return $this->owner_question_id==1? $this->business_name: $this->full_name;
+    }
 }

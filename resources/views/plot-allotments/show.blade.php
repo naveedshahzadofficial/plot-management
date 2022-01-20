@@ -2,9 +2,6 @@
 @push('title', 'Detail Special Economic Zones')
 @push('breadcrumb-items')
     <li class="breadcrumb-item">
-        <a  class="text-muted">System Definitions</a>
-    </li>
-    <li class="breadcrumb-item">
         <a href="{{ route('special-economic-zones.index') }}" class="text-muted">Special Economic Zones</a>
     </li>
     <li class="breadcrumb-item">

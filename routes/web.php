@@ -11,7 +11,8 @@ use App\Http\Controllers\ {
     MasterPlanController,
     IndustrialZoneController,
     PlotController,
-    PlotAllotmentController
+    PlotAllotmentController,
+    AllotmentController
 };
 
 Route::get('/', function () {
@@ -39,6 +40,7 @@ Route::post('plots/zones/ajax', [PlotController::class, 'zonePlots'])->name('plo
 Route::post('plots/merge-area/ajax', [PlotController::class, 'mergePlotsArea'])->name('plots.merge-area.ajax');
 Route::resource('plots', PlotController::class);
 Route::resource('plot-allotments', PlotAllotmentController::class);
+Route::resource('plot-allotments.allotments', AllotmentController::class);
 
 
 Route::get('profile', [App\Http\Controllers\UsersController::class, 'profile'])->name('profile');

@@ -2,9 +2,6 @@
 @push('title', 'Add Plot Allotment')
 @push('breadcrumb-items')
     <li class="breadcrumb-item">
-        <a  class="text-muted">System Definitions</a>
-    </li>
-    <li class="breadcrumb-item">
         <a href="{{ route('plot-allotments.index') }}" class="text-muted">Plot Allotment</a>
     </li>
     <li class="breadcrumb-item">
@@ -338,7 +335,7 @@
 
                                     <div  data-repeater-list="addresses">
                                         @for($index =0; $index<count(old('addresses',array(1))); $index++)
-                                            @component('plot-allotments.address-item', ['index'=> $index, 'provinces'=> $provinces]) @endcomponent
+                                            @component('plot-allotments.address-item', ['index'=> $index, 'provinces'=> $provinces, 'districts'=>$districts,'tehsils'=>$tehsils]) @endcomponent
                                         @endfor
 
                                     </div>
