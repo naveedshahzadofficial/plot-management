@@ -272,7 +272,7 @@
 
         $('#role_id').change(function (){
             let role_id = $(this).val();
-            if(role_id === '1' || role_id=== '2') {
+            if(role_id === '1' || role_id=== '2' || role_id=== '5') {
                 $('#special_economic_zone_id').val('');
                 $('#special_economic_zone_id').trigger('change.select2');
                 $('#sez_div').hide();

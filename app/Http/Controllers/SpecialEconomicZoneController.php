@@ -6,6 +6,7 @@ use App\Http\Requests\StoreSpecialEconomicZoneRequest;
 use App\Http\Requests\UpdateSpecialEconomicZoneRequest;
 use App\Models\District;
 use App\Models\SpecialEconomicZone;
+use App\Models\User;
 use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 
@@ -19,7 +20,9 @@ class SpecialEconomicZoneController extends Controller
     public function index()
     {
         if(request()->ajax()) {
-            $query=SpecialEconomicZone::with('district');
+            $query=SpecialEconomicZone::with('district')->when(auth()->user()->hasRole('Developer'), function ($q){
+                $q->where('user_id', auth()->id());
+            });
             return DataTables::of($query)
                 ->addIndexColumn()
                 ->addColumn('district', function (SpecialEconomicZone $specialEconomicZone) {
@@ -55,7 +58,8 @@ class SpecialEconomicZoneController extends Controller
     public function create(): View
     {
         $districts=District::where('district_status', 1)->get();
-        return view('special-economic-zones.create',compact('districts'));
+        $users = User::where('user_status', 1)->whereRelation('roles','name', 'Developer')->get();
+        return view('special-economic-zones.create',compact('districts', 'users'));
     }
 
     /**
@@ -93,7 +97,8 @@ class SpecialEconomicZoneController extends Controller
     public function edit(SpecialEconomicZone $specialEconomicZone)
     {
         $districts=District::where('district_status', 1)->get();
-        return view('special-economic-zones.edit',compact('districts', 'specialEconomicZone'));
+        $users = User::where('user_status', 1)->whereRelation('roles','name', 'Developer')->get();
+        return view('special-economic-zones.edit',compact('districts', 'specialEconomicZone', 'users'));
     }
 
     /**

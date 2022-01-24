@@ -12,7 +12,7 @@ class SpecialEconomicZone extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['district_id', 'name', 'total_area','industrial_area','industrial_total_plots','commercial_area','commercial_total_plots'
+    protected $fillable = ['user_id','district_id', 'name', 'total_area','industrial_area','industrial_total_plots','commercial_area','commercial_total_plots'
         ,'infrastructure_area','parks_area','amenities_area','other_area'
         ,'latitude','longitude','status' ];
 

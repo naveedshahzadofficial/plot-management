@@ -31,7 +31,7 @@ class UpdateUserRequest extends FormRequest
             'mobile_no' => 'sometimes',
             'password' => 'same:password_confirmation',
             'role_id' => 'required',
-            'special_economic_zone_id'=> new RequiredIf(!in_array($this->role_id,[1,2]))
+            'special_economic_zone_id'=> new RequiredIf(!in_array($this->role_id,[1,2,5]))
         ];
     }
 }

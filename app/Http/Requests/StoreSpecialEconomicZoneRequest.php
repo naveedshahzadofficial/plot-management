@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreSpecialEconomicZoneRequest extends FormRequest
 {
@@ -24,7 +25,8 @@ class StoreSpecialEconomicZoneRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|max:100',
+            'user_id'=>'required|integer',
+            'name'=>['required', 'string','max:100',Rule::unique('special_economic_zones', 'name')->where('user_id', $this->user_id)],
             'district_id'=>'required|integer',
             'total_area'=>'required',
             'industrial_area'=>'required',
@@ -38,6 +40,13 @@ class StoreSpecialEconomicZoneRequest extends FormRequest
             'latitude'=>'required',
             'longitude'=>'required',
             'status'=>'required|integer',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'This Special Economic Zone is already exist.',
         ];
     }
 }

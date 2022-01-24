@@ -129,7 +129,7 @@
 
                                 </div>
 
-                                <div class="col-lg-6" id="sez_div" {!! in_array($user->role_id,[1,2])?'style="display: none;"':'' !!}>
+                                <div class="col-lg-6" id="sez_div" {!! in_array($user->role_id,[1,2,5])?'style="display: none;"':'' !!}>
                                     <label>Special Economic Zone<span class="color-red-700">*</span></label>
                                     <div class="col-form-label">
                                         <select class="custom-select custom-select-lg mb-3 select2" name="special_economic_zone_id" id="special_economic_zone_id" required style="width: 100% !important;">
@@ -264,7 +264,7 @@
 
         $('#role_id').change(function (){
             let role_id = $(this).val();
-            if(role_id === '1' || role_id=== '2') {
+            if(role_id === '1' || role_id=== '2' || role_id=== '5') {
                 $('#special_economic_zone_id').val('');
                 $('#special_economic_zone_id').trigger('change.select2');
                 $('#sez_div').hide();

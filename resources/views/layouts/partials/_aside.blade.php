@@ -47,9 +47,10 @@
 									</a>
 								</li>
 
-                             @hasanyrole('Super Admin|Admin')
+                             @hasanyrole('Super Admin|Admin|Developer')
 							 <li class="menu-item menu-item-submenu {{ areActiveRoutes([
 								'roles.index','roles.create','roles.edit',
+								'users.index','users.create','users.edit',
 								'special-economic-zones.index','special-economic-zones.create','special-economic-zones.edit',
 								'special-economic-zones.sez-rates.index','special-economic-zones.sez-rates.create','special-economic-zones.sez-rates.edit',
 								'special-economic-zones.master-plans.index','special-economic-zones.master-plans.create','special-economic-zones.master-plans.edit',
@@ -79,6 +80,7 @@
 											</span>
 										</li>
 
+                                        @hasanyrole('Super Admin|Admin')
 
                                         <li class="menu-item {{ areActiveRoutes(['roles.index','roles.create','roles.edit']) }}" aria-haspopup="true">
                                             <a href="{{ route('roles.index') }}" class="menu-link">
@@ -88,6 +90,8 @@
                                                 <span class="menu-text">Roles</span>
                                             </a>
                                         </li>
+                                        @endhasanyrole
+
                                         <li class="menu-item {{ areActiveRoutes(['users.index','users.create','users.edit']) }}" aria-haspopup="true">
                                             <a href="{{ route('users.index') }}" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-line">

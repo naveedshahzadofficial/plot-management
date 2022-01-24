@@ -15,6 +15,7 @@ class CreateSpecialEconomicZonesTable extends Migration
     {
         Schema::create('special_economic_zones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->foreignId('district_id')->nullable()->constrained();
             $table->string('name')->nullable();
             $table->string('total_area')->nullable();

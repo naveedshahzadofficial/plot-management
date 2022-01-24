@@ -63,7 +63,7 @@
                                 <th>Plot Size (Acres)</th>
                                 <th class="text-center">Plot Status</th>
                                 <th class="text-center">Status</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center" style="width: 130px;">Action</th>
                             </tr>
                             </thead>
 

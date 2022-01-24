@@ -29,6 +29,25 @@
                         {!! Form::open(array('id'=>'form_add_edit','route' => 'special-economic-zones.store','method'=>'POST')) !!}
                         <div class="card-body">
 
+                            @if(!auth()->user()->hasRole('Developer'))
+                            <div class="row form-group">
+                                <div class="col-lg-6">
+                                    <label>Developer <span class="color-red-700">*</span></label>
+                                    <select class="form-control select2" name="user_id">
+                                        <option value="">Select Developer</option>
+                                        @foreach($users as $user)
+                                            <option {{ old('user_id')== $user->id ? 'selected': '' }} value="{{ $user->id }}"> {{ $user->name }} </option>
+                                        @endforeach
+                                    </select>
+                                    @error('user_id')
+                                    <div class="error">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            @else
+                                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                            @endif
+
                             <div class="row form-group">
                                 <div class="col-lg-6">
                                     <label>Name <span class="color-red-700">*</span></label>
@@ -207,6 +226,7 @@
             'use strict';
             $('#form_add_edit').validate({
                 rules: {
+                    user_id: "required",
                     name: "required",
                     district_id: "required",
                     total_area: "required",
@@ -222,6 +242,9 @@
                     status: "required"
                 },
                 messages: {
+                    user_id: {
+                        required: "Developer is required."
+                    },
                     name: {
                         required: "Name is required."
                     },
