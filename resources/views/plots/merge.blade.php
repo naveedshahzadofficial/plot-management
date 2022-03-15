@@ -84,7 +84,7 @@
                             <div class="row form-group">
                                 <div class="col-lg-6">
                                     <label>New Plot No. <span class="color-red-700">*</span></label>
-                                    <input maxlength="10" type="text" name="plot_no" class="form-control money_format" placeholder="Total Area" value="{{ old('plot_no') }}" />
+                                    <input maxlength="10" type="text" name="plot_no" class="form-control" placeholder="Total Area" value="{{ old('plot_no') }}" />
                                     @error('plot_no')
                                     <div class="error">{{ $message }}</div>
                                     @enderror

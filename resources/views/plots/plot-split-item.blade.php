@@ -7,7 +7,7 @@
     <div class="row form-group">
         <div class="col-lg-6">
             <label>New Plot No. <span class="color-red-700">*</span></label>
-            <input maxlength="10" type="text" name="plot_no" class="form-control money_format" placeholder="Plot No." value="{{ old("new_plots.{$index}.plot_no") }}" required />
+            <input maxlength="10" type="text" name="plot_no" class="form-control" placeholder="Plot No." value="{{ old("new_plots.{$index}.plot_no") }}" required />
             @error("new_plots.{$index}.plot_no")
             <div class="error">{{ $message }}</div>
             @enderror

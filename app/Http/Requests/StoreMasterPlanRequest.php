@@ -25,7 +25,7 @@ class StoreMasterPlanRequest extends FormRequest
     public function rules()
     {
         return [
-            'year'=>['required', Rule::unique('master_plans', 'year')->where('special_economic_zone_id', $this->special_economic_zone->id)],
+            'year'=>['required', Rule::unique('master_plans', 'year')->where('special_economic_zone_id', $this->special_economic_zone->id)->whereNull('deleted_at')],
             'master_plan_file'=>'required|mimes:jpg,jpeg,png,pdf,doc,docx|max:5120',
             'status'=>'required|integer',
         ];

@@ -26,7 +26,7 @@ class UpdateSpecialEconomicZoneRequest extends FormRequest
     {
         return [
             'user_id'=>'required|integer',
-            'name'=>['required', 'string','max:100',Rule::unique('special_economic_zones', 'name')->ignore($this->special_economic_zone)->where('user_id', $this->user_id)],
+            'name'=>['required', 'string','max:100',Rule::unique('special_economic_zones', 'name')->ignore($this->special_economic_zone)->where('user_id', $this->user_id)->whereNull('deleted_at')],
             'district_id'=>'required',
             'total_area'=>'required',
             'industrial_area'=>'required',

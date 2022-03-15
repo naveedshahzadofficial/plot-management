@@ -27,8 +27,8 @@ class StorePlotMergeRequest extends FormRequest
         return [
             'special_economic_zone_id'=> 'required',
             'plot_type'=> 'required',
-            'plot_no'=>['required', 'integer','not_in:0','digits_between:1,10',Rule::unique('plots', 'plot_no')->where('special_economic_zone_id', $this->special_economic_zone_id)],
-            'plot_size'=>'required|integer|not_in:0',
+            'plot_no'=>['required', 'string',Rule::unique('plots', 'plot_no')->where('special_economic_zone_id', $this->special_economic_zone_id)->whereNull('deleted_at')],
+            'plot_size'=>'required|numeric|not_in:0',
             'merge_plots'=>'required|array|min:2',
             'latitude'=>'sometimes|nullable',
             'longitude'=>'sometimes|nullable',

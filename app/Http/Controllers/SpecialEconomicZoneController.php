@@ -29,7 +29,7 @@ class SpecialEconomicZoneController extends Controller
                     return optional($specialEconomicZone->district)->district_name_e;
                 })
                 ->editColumn('total_area', function (SpecialEconomicZone $specialEconomicZone) {
-                    return number_format($specialEconomicZone->total_area);
+                    return number_format($specialEconomicZone->total_area,2);
                 })
                 ->editColumn('status', function (SpecialEconomicZone $specialEconomicZone) {
                     return '<span class="label label-lg font-weight-bold label-inline '.($specialEconomicZone->status?'label-light-success':'label-light-danger').'">'.($specialEconomicZone->status?'Active':'Inactive').'</span>';

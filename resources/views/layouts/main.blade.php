@@ -130,12 +130,12 @@
                 $(function (){
                     $('.select2').select2();
                     $(".money_format").inputmask("currency",{
-                        radixPoint:"",
+                        radixPoint:".",
                         groupSeparator: ",",
                         allowMinus: false,
                         prefix: '',
-                        digits: 0,
-                        digitsOptional: false,
+                        digits: 2,
+                        digitsOptional: true,
                         rightAlign: false,
                         unmaskAsNumber: true,
                         removeMaskOnSubmit:true,

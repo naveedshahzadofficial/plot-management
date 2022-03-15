@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAllotmentRequest;
 use App\Models\Allotment;
+use App\Models\Plot;
 use App\Models\PlotAllotment;
 use App\Models\Sector;
+use App\Models\SpecialEconomicZone;
 use Yajra\DataTables\DataTables;
 
 class AllotmentController extends Controller
@@ -41,8 +43,11 @@ class AllotmentController extends Controller
                 ->rawColumns(['sector','status','action'])
                 ->make(true);
         }
+
         $sectors = Sector::where('status', 1)->get();
-        return view('allotments.index', compact('plotAllotment', 'sectors'));
+        $specialEconomicZones = SpecialEconomicZone::where('status', 1)->get();
+        $plots = Collect();
+        return view('allotments.index', compact('plotAllotment', 'sectors','specialEconomicZones', 'plots'));
     }
 
     /**

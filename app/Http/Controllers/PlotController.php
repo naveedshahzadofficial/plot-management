@@ -32,9 +32,6 @@ class PlotController extends Controller
                 ->addColumn('specialEconomicZone', function (Plot $plot) {
                     return optional($plot->specialEconomicZone)->name;
                 })
-                ->editColumn('plot_no', function (Plot $plot) {
-                    return number_format($plot->plot_no);
-                })
                 ->editColumn('status', function (Plot $plot) {
                     return '<span class="label label-lg font-weight-bold label-inline '.($plot->status?'label-light-success':'label-light-danger').'">'.($plot->status?'Active':'Inactive').'</span>';
                 })

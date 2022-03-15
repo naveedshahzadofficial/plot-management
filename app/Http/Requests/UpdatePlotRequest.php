@@ -26,9 +26,9 @@ class UpdatePlotRequest extends FormRequest
     {
         return [
             'special_economic_zone_id'=>'required|integer',
-            'plot_no'=>['required', 'integer','not_in:0','digits_between:1,10',Rule::unique('plots', 'plot_no')->ignore($this->plot)->where('special_economic_zone_id', $this->special_economic_zone_id)],
+            'plot_no'=>['required', 'string' ,Rule::unique('plots', 'plot_no')->ignore($this->plot)->where('special_economic_zone_id', $this->special_economic_zone_id)->whereNull('deleted_at')],
             'plot_type'=>'required|string',
-            'plot_size'=>'required|integer|not_in:0|digits_between:1,20',
+            'plot_size'=>'required|numeric|not_in:0',
             'plot_status'=>'required|string',
             'latitude'=>'sometimes|nullable',
             'longitude'=>'sometimes|nullable',

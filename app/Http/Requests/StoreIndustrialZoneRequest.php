@@ -25,8 +25,8 @@ class StoreIndustrialZoneRequest extends FormRequest
     public function rules()
     {
         return [
-            'sector_id'=>['required','integer', Rule::unique('industrial_zones', 'sector_id')->where('special_economic_zone_id', $this->special_economic_zone->id)],
-            'area'=>'required|integer|digits_between:1,10',
+            'sector_id'=>['required','integer', Rule::unique('industrial_zones', 'sector_id')->where('special_economic_zone_id', $this->special_economic_zone->id)->whereNull('deleted_at')],
+            'area'=>'required|numeric|not_in:0',
             'status'=>'required|integer',
         ];
     }

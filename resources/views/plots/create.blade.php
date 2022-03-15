@@ -46,7 +46,7 @@
 
                                 <div class="col-lg-6">
                                     <label>Plot No. <span class="color-red-700">*</span></label>
-                                    <input maxlength="10" type="text" name="plot_no" class="form-control money_format" placeholder="Total Area" value="{{ old('plot_no') }}" />
+                                    <input maxlength="10" type="text" name="plot_no" class="form-control" placeholder="Plot No." value="{{ old('plot_no') }}" />
                                     @error('plot_no')
                                     <div class="error">{{ $message }}</div>
                                     @enderror
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <label>Plot Size (Acres) <span class="color-red-700">*</span></label>
-                                    <input maxlength="20" type="text" name="plot_size" class="form-control money_format" placeholder="Industrial Plots" value="{{ old('plot_size') }}" />
+                                    <input maxlength="20" type="text" name="plot_size" class="form-control money_format" placeholder="Plot Size" value="{{ old('plot_size') }}" />
                                     @error('plot_size')
                                     <div class="error">{{ $message }}</div>
                                     @enderror

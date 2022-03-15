@@ -29,11 +29,11 @@
                             <div class="row form-group">
                                 <div class="col-lg-6">
                                     <label>Previous Plot No. <span class="color-red-700"></span></label>
-                                    <span class="form-control">{{ number_format($plot->plot_no) }}</span>
+                                    <span class="form-control">{{ $plot->plot_no }}</span>
                                 </div>
                                 <div class="col-lg-6">
                                     <label>Previous Size (Acres). <span class="color-red-700"></span></label>
-                                    <span class="form-control">{{ number_format($plot->plot_size) }}</span>
+                                    <span class="form-control">{{ number_format($plot->plot_size,2) }}</span>
                                 </div>
                             </div>
 
