@@ -150,6 +150,25 @@
                     $(this).find('.select2.select2-container').remove();
                     $(this).find('.select2').removeClass('select2-hidden-accessible');
                     $('.select2').select2();
+
+                    $(".money_whole").inputmask("currency",{
+                        radixPoint:"",
+                        groupSeparator: ",",
+                        allowMinus: false,
+                        prefix: '',
+                        digits: 0,
+                        digitsOptional: false,
+                        rightAlign: false,
+                        unmaskAsNumber: true,
+                        removeMaskOnSubmit:true,
+                        autoUnmask:false,
+                        greedy:true,
+                        insertMode:true,
+                        clearIncomplete:false,
+                        clearMaskOnLostFocus:true,
+                        placeholder: ''
+                    });
+
                 },
 
                 hide: function(deleteElement) {
@@ -158,6 +177,24 @@
                     }
                 },
                 isFirstItemUndeletable: true
+            });
+
+            $(".money_whole").inputmask("currency",{
+                radixPoint:"",
+                groupSeparator: ",",
+                allowMinus: false,
+                prefix: '',
+                digits: 0,
+                digitsOptional: false,
+                rightAlign: false,
+                unmaskAsNumber: true,
+                removeMaskOnSubmit:true,
+                autoUnmask:false,
+                greedy:true,
+                insertMode:true,
+                clearIncomplete:false,
+                clearMaskOnLostFocus:true,
+                placeholder: ''
             });
 
         });
@@ -176,7 +213,7 @@
         }
 
         function getZonePlots(plot_id, plot_type, special_economic_zone_id){
-            $.post('{{ route('plots.zone.ajax') }}', { plot_type:plot_type, special_economic_zone_id:special_economic_zone_id }, function (response){
+            $.post('{{ route('plots.zone.ajax') }}', { plot_type:plot_type, special_economic_zone_id:special_economic_zone_id, plot_status:'Unsold' }, function (response){
                 response.forEach(function (row) {
                     $(plot_id).append('<option data-size="'+row.plot_size+'"  value="' + row.id + '">' + row.plot_no + ' ('+ row.plot_size +' Acres)</option>');
                 });

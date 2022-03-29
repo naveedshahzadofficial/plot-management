@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Allotment extends Model
@@ -30,5 +31,10 @@ class Allotment extends Model
     function sector(): BelongsTo
     {
         return $this->belongsTo(Sector::class);
+    }
+
+    function plotAllocations(): HasMany
+    {
+        return $this->hasMany(PlotAllocation::class);
     }
 }

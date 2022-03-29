@@ -70,7 +70,12 @@ class AllotmentController extends Controller
      */
     public function store(StoreAllotmentRequest $request, PlotAllotment $plotAllotment)
     {
-        $plotAllotment->allotments()->create($request->validated());
+        $data = $request->validated();
+        $plotAllotment->allotments()->create($data);
+        if(isset($data['plot_allocations']) && !empty($data['plot_allocations'])) {
+            $plot_allocation = $plotAllotment->allotments->first();
+            $plot_allocation->plotAllocations()->createMany($data['plot_allocations']);
+        }
         return redirect()
             ->route('plot-allotments.allotments.index', $plotAllotment)
             ->with('success_message', 'Allotment has been added successfully.');

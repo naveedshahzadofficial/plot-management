@@ -73,14 +73,14 @@
     <div class="row form-group">
         <div class="col-lg-6">
             <label>Rate per Acre (PKR)<span class="color-red-700">*</span></label>
-            <input type="number" name="rate_per_acre" class="form-control" placeholder="Rate per Acre" value="{{ old("plot_allocations.{$index}.rate_per_acre") }}" required />
+            <input type="text" name="rate_per_acre" class="form-control money_whole" placeholder="Rate per Acre" value="{{ old("plot_allocations.{$index}.rate_per_acre") }}" required />
             @error("plot_allocations.{$index}.rate_per_acre")
             <div class="error">{{ $message }}</div>
             @enderror
         </div>
         <div class="col-lg-6">
             <label>Additional Corner (PKR) <span class="color-red-700"></span></label>
-            <input type="number" name="rate_additional_corner" class="form-control" placeholder="Additional Corner" value="{{ old("plot_allocations.{$index}.rate_additional_corner") }}" />
+            <input type="text" name="rate_additional_corner" class="form-control money_whole" placeholder="Additional Corner" value="{{ old("plot_allocations.{$index}.rate_additional_corner") }}" />
             @error("plot_allocations.{$index}.rate_additional_corner")
             <div class="error">{{ $message }}</div>
             @enderror
@@ -91,7 +91,7 @@
     <div class="row form-group">
         <div class="col-lg-6">
             <label>Additional Main Road (PKR) <span class="color-red-700"></span></label>
-            <input type="number" name="rate_additional_main_road" class="form-control" placeholder="Additional Main Road" value="{{ old("plot_allocations.{$index}.rate_additional_main_road") }}" />
+            <input type="text" name="rate_additional_main_road" class="form-control money_whole" placeholder="Additional Main Road" value="{{ old("plot_allocations.{$index}.rate_additional_main_road") }}" />
             @error("plot_allocations.{$index}.rate_additional_main_road")
             <div class="error">{{ $message }}</div>
             @enderror

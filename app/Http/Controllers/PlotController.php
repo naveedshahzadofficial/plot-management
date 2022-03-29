@@ -199,7 +199,11 @@ class PlotController extends Controller
     }
 
     public function zonePlots(Request $request){
-        $plots = Plot::where('special_economic_zone_id', $request->special_economic_zone_id)->where('plot_type',$request->plot_type)->get();
+         $query = Plot::where('special_economic_zone_id', $request->special_economic_zone_id)->where('plot_type',$request->plot_type);
+         if(isset($request->plot_status) && !empty($request->plot_status)){
+             $query->where('plot_status', $request->plot_status);
+         }
+         $plots= $query->get();
         return response()->json($plots);
     }
 

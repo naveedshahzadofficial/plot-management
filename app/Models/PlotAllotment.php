@@ -30,7 +30,7 @@ class PlotAllotment extends Model
 
     function allotments(): HasMany
     {
-        return $this->hasMany(Allotment::class);
+        return $this->hasMany(Allotment::class)->latest();
     }
 
     public function getAllotmentNameAttribute(): string
