@@ -44,7 +44,7 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>SEZ</th>
+                                <th>SEZ/IEs</th>
                                 <th>Business Name/ Name</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center">Action</th>

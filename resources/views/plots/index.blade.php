@@ -57,7 +57,7 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>SEZ</th>
+                                <th>SEZ/IEs</th>
                                 <th>Plot No.</th>
                                 <th>Type</th>
                                 <th>Plot Size (Acres)</th>
