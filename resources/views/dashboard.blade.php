@@ -205,7 +205,7 @@
                 thousandsSep: ','
             }
         });
-        const buildHighCharts = (chart_id, categories, series, title=null) => {
+        const buildHighCharts = (chart_id, categories, series, colors = null,title=null) => {
             return Highcharts.chart(chart_id, {
                 chart: {
                     type: 'column',
@@ -294,14 +294,14 @@
                         }
                     }
                 },
-                colors:['#156082','#E97132', '#196B24'],
+                colors: colors,
                 series:series
 
             });
         }
 
-        const barchart1 = buildHighCharts('bar_graph_1', <?php echo isset($bar_graph1['users'])?json_encode($bar_graph1['users']):'[]';?>, <?php echo isset($bar_graph1['series'])?json_encode($bar_graph1['series']):'[]';?>);
-        const barchart2 = buildHighCharts('bar_graph_2', <?php echo isset($bar_graph2['users'])?json_encode($bar_graph2['users']):'[]';?>, <?php echo isset($bar_graph2['series'])?json_encode($bar_graph2['series']):'[]';?>);
+        const barchart1 = buildHighCharts('bar_graph_1', <?php echo isset($bar_graph1['users'])?json_encode($bar_graph1['users']):'[]';?>, <?php echo isset($bar_graph1['series'])?json_encode($bar_graph1['series']):'[]';?>, ['#037FFF','#FFC72A', '#17C12D']);
+        const barchart2 = buildHighCharts('bar_graph_2', <?php echo isset($bar_graph2['users'])?json_encode($bar_graph2['users']):'[]';?>, <?php echo isset($bar_graph2['series'])?json_encode($bar_graph2['series']):'[]';?>, ['#037FFF','#FFC72A']);
     </script>
 @endpush
 
