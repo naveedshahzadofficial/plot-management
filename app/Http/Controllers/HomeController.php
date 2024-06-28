@@ -34,7 +34,7 @@ class HomeController extends Controller
         $series = array();
 
         $raws = ['Rahim Yar Khan Industrial Estate', 'Bhalwal Industrial Estate', 'Vehari Industrial Estate', 'Quaid-e-Azam Business Park',
-            'M-3 Industrial City', 'Vehari Industrial City', 'Allama Iqbal Industrial City'];
+            'M-3 Industrial City', 'Value Addition City', 'Allama Iqbal Industrial City'];
         $users = array();
         foreach ($raws as $key=>$value){
             $user = new \stdClass;
@@ -69,7 +69,7 @@ class HomeController extends Controller
         $series = array();
 
         $raws = ['Rahim Yar Khan Industrial Estate', 'Bhalwal Industrial Estate', 'Vehari Industrial Estate', 'Quaid-e-Azam Business Park',
-            'M-3 Industrial City', 'Vehari Industrial City', 'Allama Iqbal Industrial City'];
+            'M-3 Industrial City', 'Value Addition City', 'Allama Iqbal Industrial City'];
         $users = array();
         foreach ($raws as $key=>$value){
             $user = new \stdClass;
