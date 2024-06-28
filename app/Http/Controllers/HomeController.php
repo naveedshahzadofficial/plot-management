@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         $series = array();
 
-        $raws = ['Rahmin Yar Khan Industrial Estate', 'Bhalwal Industrial Estate', 'Vehari Industrial City', 'Quaid-e-Azam Business Park',
+        $raws = ['Rahim Yar Khan Industrial Estate', 'Bhalwal Industrial Estate', 'Vehari Industrial City', 'Quaid-e-Azam Business Park',
             'M-3 Industrial City', 'VAC', 'Allama Iqbal Industrial City'];
         $users = array();
         foreach ($raws as $key=>$value){
@@ -68,7 +68,7 @@ class HomeController extends Controller
     {
         $series = array();
 
-        $raws = ['Rahmin Yar Khan Industrial Estate', 'Bhalwal Industrial Estate', 'Vehari Industrial City', 'Quaid-e-Azam Business Park',
+        $raws = ['Rahim Yar Khan Industrial Estate', 'Bhalwal Industrial Estate', 'Vehari Industrial City', 'Quaid-e-Azam Business Park',
             'M-3 Industrial City', 'VAC', 'Allama Iqbal Industrial City'];
         $users = array();
         foreach ($raws as $key=>$value){
