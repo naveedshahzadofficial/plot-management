@@ -44,7 +44,7 @@ class HomeController extends Controller
         }
 
         $obj = new \stdClass;
-        $obj->name = "In Production";
+        $obj->name = "Total Plots";
         $obj->data = array(200, 320,180,690,480,100,420);
         $series[] = $obj;
 
