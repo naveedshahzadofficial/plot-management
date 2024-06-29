@@ -66,5 +66,11 @@
         @show
 
         @stack('post-scripts')
+
+        <script>
+            const reDrawDataTable = () => {
+                myDataTable.draw()
+            }
+        </script>
 </body>
 </html>

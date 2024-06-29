@@ -80,7 +80,10 @@ class HomeController extends Controller
 
         $obj = new \stdClass;
         $obj->name = "In Production";
-        $obj->data = array(45,60,10,15,230,50,10);
+
+
+
+        $obj->data = array(45,60,10,15,$this->makeUrlObj(230, route('reports.industry-in-production')),50,10);
         $series[] = $obj;
 
         $obj = new \stdClass;
@@ -91,5 +94,13 @@ class HomeController extends Controller
         $data['series'] = $series;
         $data['users'] = $users;
         return $data;
+    }
+
+    private function makeUrlObj($value, $url): \stdClass
+    {
+        $obj_inner = new \stdClass;
+        $obj_inner->y = $value;
+        $obj_inner->url = $url;
+        return $obj_inner;
     }
 }

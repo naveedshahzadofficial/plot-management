@@ -12,7 +12,8 @@ use App\Http\Controllers\ {
     IndustrialZoneController,
     PlotController,
     PlotAllotmentController,
-    AllotmentController
+    AllotmentController,
+    ReportController
 };
 
 Route::get('/', function () {
@@ -42,6 +43,9 @@ Route::resource('plots', PlotController::class);
 Route::resource('plot-allotments', PlotAllotmentController::class);
 Route::resource('plot-allotments.allotments', AllotmentController::class);
 
+/* Start:: Reports */
+Route::get('reports/industry-in-production', [ReportController::class, 'industryInProduction'])->name('reports.industry-in-production');
+/* End:: Reports */
 
 Route::get('profile', [App\Http\Controllers\UsersController::class, 'profile'])->name('profile');
 Route::post('profile/update', [App\Http\Controllers\UsersController::class, 'profileUpdate'])->name('profile.update');

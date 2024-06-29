@@ -278,7 +278,7 @@
                         point: {
                             events: {
                                 click: function () {
-                                    location.href = this.options.url;
+                                    location.href = this.options.url??'javascript:;';
                                 }
                             }
                         },
